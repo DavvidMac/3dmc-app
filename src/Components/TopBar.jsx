@@ -7,9 +7,9 @@ function TopBar({Child}) {
     return (
         <>
             <div className="containerline">
-                <img src={backLogo} className="icone" />
+                <img src={backLogo} className="icone" alt='icon'/>
                 <p className="title">{Child}</p>
-                <img src={doneLogo} className="icone" />
+                <img src={doneLogo} className="icone" alt='icon'/>
             </div>
         </>
     )
