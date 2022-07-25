@@ -1,15 +1,15 @@
-import React, { Children } from 'react';
-import backLogo from '../Icons/back.svg';
-import doneLogo from '../Icons/done.svg';
-import photoLogo from '../Icons/photo.svg';
+import React from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faArrowAltCircleLeft,faArrowAltCircleRight} from "@fortawesome/free-solid-svg-icons"
+
 import "./TopBar.css"
 function TopBar({Child}) {
     return (
         <>
             <div className="containerline">
-                <img src={backLogo} className="icone" alt='icon'/>
+                <FontAwesomeIcon className="icone" icon={faArrowAltCircleLeft} alt='icon' ></FontAwesomeIcon>
                 <p className="title">{Child}</p>
-                <img src={doneLogo} className="icone" alt='icon'/>
+                <FontAwesomeIcon className="icone" icon={faArrowAltCircleRight} alt='icon' ></FontAwesomeIcon>
             </div>
         </>
     )
