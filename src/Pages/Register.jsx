@@ -1,13 +1,14 @@
 import React from 'react';
 import "./Register.css"
-import TopBar from '../Components/TopBar'
+import NavBar from '../Components/NavBar'
 
 function Register() {
     
     return (
         <>
-            <TopBar Child="Registrar"/>
-            <div className="imagepicker">
+            <NavBar/>
+            <h1 className="titulo">REGISTRAR</h1>
+            <div className="titulo">
                 <input type="file" id="Fimage" accept='image/*'></input>
             </div>
             <div className="list" >

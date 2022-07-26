@@ -1,11 +1,11 @@
 import React from 'react';
 import "./Info.css"
-import TopBar from "../Components/TopBar.jsx"
+import NavBar from "../Components/NavBar"
 
 function Info ()  {
     return (
         <>
-            <TopBar Child="Informação"/>
+            <NavBar/>
         </>
       );
 }

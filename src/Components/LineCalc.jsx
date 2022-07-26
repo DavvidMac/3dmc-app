@@ -8,11 +8,15 @@ function LineCalc({ pl_time, pl_Mat, tipo }) {
         return (
             <>
                 <div className="line">
-                    <FontAwesomeIcon className="icone" icon={faClock} alt='icon' ></FontAwesomeIcon>
-                    <input className="InCalc" type="text" placeholder={pl_time}></input>
-                    <FontAwesomeIcon className="icone" icon={faBalanceScaleLeft} alt='icon' ></FontAwesomeIcon>
-                    <input className="InCalc" type="text" placeholder={pl_Mat}></input>
-                    <FontAwesomeIcon className="icone" icon={faTrash} alt='icon' ></FontAwesomeIcon>
+                    <div className="flexItem"><FontAwesomeIcon className="icone" icon={faClock} alt='icon' ></FontAwesomeIcon>
+                        <input className="InCalc" type="text" placeholder={pl_time}></input>
+                    </div>
+                    < div className="flexItem">
+                        <FontAwesomeIcon className="icone" icon={faBalanceScaleLeft} alt='icon' ></FontAwesomeIcon>
+                        <input className="InCalc" type="text" placeholder={pl_Mat}></input>
+                        <FontAwesomeIcon className="icone" icon={faTrash} alt='icon' ></FontAwesomeIcon>
+                    </div>
+
                 </div>
             </>
         )

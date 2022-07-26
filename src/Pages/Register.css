@@ -1,6 +1,3 @@
-* {
-    color: #fff;
-}
 .imagepicker{
     margin-top:20px;
     margin-left: auto;
@@ -10,15 +7,17 @@
     margin-top:40px;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 20%;
     margin-left: auto;
     margin-right: auto;
 }
 .reginp{
     margin-top:30px;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size:30pt;
+    border-radius: 20px;
+    border-color: #666 ;
+    font-size:14pt;
     text-align:center;
+}
+.titulo{
+    text-align: center;
 }

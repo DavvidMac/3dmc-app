@@ -1,25 +1,31 @@
+*{
+    color:#fff;
+}
+.icone {
+    Width: 30px;
+    height: 30px;
+}
+.flexItem{
+    display: flex;
+    flex-direction: row;
+}
 .InCalc{
-    margin-top: 0;
-    font-size: 40pt;
-    width: 200px;
+    margin-left: 15px;
+    font-size: 12pt;
+    width: 100px;
     background-color:transparent;
     border: none;
-    margin-left: 10px;
     outline: none;
 }
 .line{
-    margin-top: 20px;
-    width: 80%;
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
 }
 .soma{
-    margin-top: 60px;
-    width: 60%;
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center; 
 }

@@ -1,20 +1,24 @@
 import React from 'react';
 import "./Calc.css"
-import TopBar from '../Components/TopBar'
+import NavBar from '../Components/NavBar'
 import LineCalc from '../Components/LineCalc'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faAdd} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAdd } from "@fortawesome/free-solid-svg-icons"
 
 function Calc() {
     return (
         <>
-            <TopBar Child="Calculadora" />
-            <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
-            <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
-            <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
-            <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
-            <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
-            <LineCalc pl_time="00:00" pl_Mat="0.2" tipo="soma" />
+            <NavBar />
+            <h1 className="titulo">Calculadora</h1>
+            <div className="containercenter">            
+                <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
+                <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
+                <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
+                <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
+                <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
+                <LineCalc pl_time="00:00" pl_Mat="0.2" tipo="soma" />
+            </div>
+
             <FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon>
         </>
     )
