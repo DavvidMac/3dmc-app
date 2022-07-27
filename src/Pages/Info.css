@@ -1,0 +1,21 @@
+
+.inpInfo{
+    color: #000;
+    margin-top: 10px;
+    height:30px;
+    width: 200px;
+    margin-left: 15px;
+    font-size: 12pt;
+    border-radius: 20px;
+    padding: 0 0em 0 1em;
+}
+.ss{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
