@@ -17,9 +17,10 @@ function Calc() {
                 <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
                 <LineCalc pl_time="00:10" pl_Mat="0.5" tipo="" />
                 <LineCalc pl_time="00:00" pl_Mat="0.2" tipo="soma" />
+                
             </div>
 
-            <FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon>
+
         </>
     )
 }
