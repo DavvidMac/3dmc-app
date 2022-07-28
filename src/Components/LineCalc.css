@@ -8,8 +8,10 @@
 .flexItem{
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .InCalc{
+    height:30px;
     color: #000;
     font-size: 12pt;
     width: 100px;
@@ -17,14 +19,19 @@
     padding: 0 0em 0 1em;
 }
 .line{
-    margin-top: 10px;
+   margin-top: 10px; 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:space-evenly;
 }
 .soma{
     margin-top: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    justify-content:space-evenly;
+    align-items: center;
 }
+.flexItem p{
+    margin-left: 10px;
+    font-size: 12pt;
+} 

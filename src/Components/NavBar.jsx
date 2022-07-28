@@ -15,7 +15,6 @@ function Home() {
                 <div className="containerbutton">
                 <FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon>
                 <FontAwesomeIcon className="icone" icon={faList} alt='icon' ></FontAwesomeIcon>
-                <FontAwesomeIcon className="icone" icon={faInfo} alt='icon' ></FontAwesomeIcon>
                 </div>
             </div>
 
