@@ -13,12 +13,10 @@ function Home() {
                 </div>
                 <input className="searchbar" type="text" placeholder="Pesquisar"></input>
                 <div className="containerbutton">
-                <FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon>
+                <a href="/.Pages/galery"><FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon></a>
                 <FontAwesomeIcon className="icone" icon={faList} alt='icon' ></FontAwesomeIcon>
                 </div>
             </div>
-
-
         </>
     )
 }
