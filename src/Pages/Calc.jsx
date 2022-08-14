@@ -7,7 +7,7 @@ import NavBar from '../Components/NavBar'
 import LineCalc from '../Components/LineCalc'
 import Info from '../Components/Info'
 import { somaHora } from '../utils/tempoUtils'
-let object = []
+let object = [] //lista vazia
 
 function Calc() {
 
