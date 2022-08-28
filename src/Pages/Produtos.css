@@ -1,0 +1,8 @@
+.ListaProdutos{
+    display:flex;
+    flex-wrap: wrap;
+}
+.TituloProdutos{
+    margin-left: 30px;
+
+}

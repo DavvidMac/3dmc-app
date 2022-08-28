@@ -1,24 +1,46 @@
-import React from 'react';
-import "./NavBar.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAdd,faList,faInfo } from "@fortawesome/free-solid-svg-icons"
+import React from "react";
+import "./NavBar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd, faList, faInfo } from "@fortawesome/free-solid-svg-icons";
 
-function Home() {
-    return (
-        <>
-            <div className="tollbar">
-                <div className="containerhome">
-                    <img src={require('../Images/Logo.png')} className="logoloja" alt='Logo' />
-                    < p className="lojaname">LOJA <strong>3DMC</strong></p>
-                </div>
-                <input className="searchbar" type="text" placeholder="Pesquisar"></input>
-                <div className="containerbutton">
-                <a href="/.Pages/galery"><FontAwesomeIcon className="icone" icon={faAdd} alt='icon' ></FontAwesomeIcon></a>
-                <FontAwesomeIcon className="icone" icon={faList} alt='icon' ></FontAwesomeIcon>
-                </div>
-            </div>
-        </>
-    )
+function NavBar({ pesquisa, setPesquisa }) {
+  return (
+    <>
+      <div className="tollbar">
+        <div className="containerhome">
+          <img
+            src={require("../Images/Logo.png")}
+            className="logoloja"
+            alt="Logo"
+          />
+          <p className="lojaname">
+            LOJA <strong>3DMC</strong>
+          </p>
+        </div>
+        <input
+          className="searchbar"
+          type="text"
+          placeholder="Pesquisar"
+          value={pesquisa}
+          onChange={(event) => setPesquisa(event.target.value)}
+        ></input>
+        <div className="containerbutton">
+          <a href="/.Pages/galery">
+            <FontAwesomeIcon
+              className="icone"
+              icon={faAdd}
+              alt="icon"
+            ></FontAwesomeIcon>
+          </a>
+          <FontAwesomeIcon
+            className="icone"
+            icon={faList}
+            alt="icon"
+          ></FontAwesomeIcon>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Home;
+export default NavBar;

@@ -1,12 +1,16 @@
+import React from 'react';
 import './App.css';
-import Calc from './Pages/Calc'
+import Produtos from './Pages/Produtos';
+import NavBar from './Components/NavBar'
 
 function App() {
 
-  return (
+const[pesquisa,setPesquisa]=React.useState('')
 
+  return (
     <div className="App">
-      <Calc />
+      <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa}/>
+      <Produtos pesquisa={pesquisa}/>
     </div>
   );
 }

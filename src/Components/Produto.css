@@ -1,0 +1,18 @@
+.ProdutoContainer{
+    margin-left: 10px;
+    width: 200px;
+    height: 300px;
+    background-color: #18191A;
+    display:flex;
+    flex-direction: column ;
+}
+img{
+    height:205px ;
+    width:200px ;
+    object-fit:scale-down;
+}
+.ProdutoDescription{
+    margin-left:10px ;
+    margin-top: 10px;
+    line-height:0.2
+}

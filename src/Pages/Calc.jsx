@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAdd } from "@fortawesome/free-solid-svg-icons"
 import "./Calc.css"
 import Calcular from '../Components/CalculoObjeto'
-import NavBar from '../Components/NavBar'
 import LineCalc from '../Components/LineCalc'
-import Info from '../Components/Info'
 import { somaHora } from '../utils/tempoUtils'
 let object = [] //lista vazia
 
@@ -37,7 +35,6 @@ function Calc() {
     
     return (
         <>
-            <NavBar />
             <div className="containercenter">
                 <div className="calccontainer">
                     <h1 className="titulo">Calculadora</h1>
@@ -49,7 +46,6 @@ function Calc() {
                     <FontAwesomeIcon className="icone" icon={faAdd} alt='icon' onClick={handleAdd}></FontAwesomeIcon>
                     <Calcular impressao={sumt} pla={summ} lucro={30}/>
                 </div>
-                <Info />
             </div>
         </>
     )
