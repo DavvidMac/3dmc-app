@@ -6,7 +6,7 @@
 .CalcTitulo{
     text-align: center;
 }
-.CalcContainercenter{
+.CalcContainerCenter{
     margin: top 20px;
     display: flex;
     flex-direction: row;

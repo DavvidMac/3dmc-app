@@ -35,9 +35,9 @@ function Calc() {
     
     return (
         <>
-            <div className="containercenter">
-                <div className="calccontainer">
-                    <h1 className="titulo">Calculadora</h1>
+            <div className="CalcContainerCenter">
+                <div className="CalcContainer">
+                    <h1 className="CalcTitulo">Calculadora</h1>
                     {lista.map((itemm, index) => (
                         <LineCalc key={index} pl_time={itemm.tempo} pl_mat={itemm.peso} tipo="" />))}
                     <LineCalc pl_time={sumt} pl_mat={summ} tipo="soma" />

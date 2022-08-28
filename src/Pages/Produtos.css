@@ -1,8 +1,12 @@
-.ListaProdutos{
+.ProdutosLista{
     display:flex;
     flex-wrap: wrap;
 }
-.TituloProdutos{
+.ProdutosTitulo{
     margin-left: 30px;
-
+}
+.ProdutosContainer{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
