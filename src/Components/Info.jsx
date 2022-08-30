@@ -22,16 +22,16 @@ function Info({
         <label>
           Material:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={pMaterial}
             onChange={(event) => setPMaterial(event.target.value)}
           ></input>
         </label>
         <label>
-          Energia
+          Energia:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={cEnergia}
             onChange={(event) => setCEnergia(event.target.value)}
@@ -40,7 +40,7 @@ function Info({
         <label>
           Salario:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={salario}
             onChange={(event) => setSalario(event.target.value)}
@@ -49,7 +49,7 @@ function Info({
         <label>
           Despesas:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={despesas}
             onChange={(event) => setDespesas(event.target.value)}
@@ -58,7 +58,7 @@ function Info({
         <label>
           Primer:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={primer}
             onChange={(event) => setPrimer(event.target.value)}
@@ -67,7 +67,7 @@ function Info({
         <label>
           Lucro %:
           <input
-            className="inpInfo"
+            className="InpInfo"
             type="text"
             value={lucro}
             onChange={(event) => setLucro(event.target.value)}

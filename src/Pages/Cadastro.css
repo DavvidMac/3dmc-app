@@ -24,3 +24,12 @@
     border-radius: 4px;
     padding: 0 0em 0 1em;
 }
+.CadastroForm{
+    width: 360px;
+    justify-content: center;
+}
+.CadastroForm label{
+    display: flex;
+    justify-content: space-between;
+
+}

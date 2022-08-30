@@ -6,37 +6,28 @@ import { faAdd, faList, faInfo } from "@fortawesome/free-solid-svg-icons";
 function NavBar({ pesquisa, setPesquisa }) {
   return (
     <>
-      <div className="tollbar">
-        <div className="containerhome">
+      <div className="NavBarTollbar">
+        <div className="NavBarContainer">
           <img
             src={require("../Images/Logo.png")}
-            className="logoloja"
+            className="NavBarLogo"
             alt="Logo"
           />
-          <p className="lojaname">
+          <p className="NavBarLojaName">
             LOJA <strong>3DMC</strong>
           </p>
         </div>
         <input
-          className="searchbar"
+          className="NavBarSearchBar"
           type="text"
           placeholder="Pesquisar"
           value={pesquisa}
           onChange={(event) => setPesquisa(event.target.value)}
         ></input>
-        <div className="containerbutton">
+        <div className="NavBarContainerButton">
           <a href="/.Pages/galery">
-            <FontAwesomeIcon
-              className="icone"
-              icon={faAdd}
-              alt="icon"
-            ></FontAwesomeIcon>
+            Cadastrar
           </a>
-          <FontAwesomeIcon
-            className="icone"
-            icon={faList}
-            alt="icon"
-          ></FontAwesomeIcon>
         </div>
       </div>
     </>

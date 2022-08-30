@@ -4,5 +4,7 @@ Body {
 }
 
 .BodyPage{
-  display:flex;
+    display:flex;
+    flex-direction: row;
+    
 }
