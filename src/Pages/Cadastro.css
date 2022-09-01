@@ -1,35 +1,58 @@
+.CadastroPage{
+    display: flex; 
+    flex-wrap: wrap;
+}
 #add{
     bottom: 0px;
     margin-left: auto;
     margin-right: auto;
 }
-.CalcTitulo{
-    text-align: center;
+.CadastroForm{
+    width: 200px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 10px;
+    background-color: #18191a;
+    border-radius: 5px;
+    padding: 5px;
+}
+.CadastroInputProduto {
+    color: #000;
+    font-size: 12pt;
+    height: 22px;
+    margin-left: 15px;
+    width: 90px;
+    border-radius: 4px;
+    padding: 0 0em 0 1em;
+}
+.CadastroInputPartes {
+    color: #000;
+    font-size: 12pt;
+    margin-left: 15px;
+    height: 25px;
+    width: 120px;
+    border-radius: 4px;
+    padding: 0 0em 0 1em;
 }
 .CalcContainerCenter{
     margin: top 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex:1;
 }
-.CalcContainer{
-    width: 500px;
+.CalcTitulo{
+    text-align: center;
 }
-.CalcInpInfo {
-    color: #000;
-    font-size: 12pt;
-    margin-left: 15px;
-    height: 25px;
-    width: 200px;
-    border-radius: 4px;
-    padding: 0 0em 0 1em;
-}
-.CadastroForm{
-    width: 360px;
-    justify-content: center;
+.CadastroTitulo{
+    text-align: center;
+    line-height: 0.08;
 }
 .CadastroForm label{
     display: flex;
     justify-content: space-between;
-
+    padding-left: 6px;
+    padding-right: 6px;
 }

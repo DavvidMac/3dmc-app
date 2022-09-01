@@ -1,7 +1,6 @@
 import React from "react";
 import "./NavBar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faList, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function NavBar({ pesquisa, setPesquisa }) {
   return (
@@ -14,7 +13,7 @@ function NavBar({ pesquisa, setPesquisa }) {
             alt="Logo"
           />
           <p className="NavBarLojaName">
-            LOJA <strong>3DMC</strong>
+            LOJA <Link to="/"><strong>3DMC</strong></Link>
           </p>
         </div>
         <input
@@ -25,9 +24,7 @@ function NavBar({ pesquisa, setPesquisa }) {
           onChange={(event) => setPesquisa(event.target.value)}
         ></input>
         <div className="NavBarContainerButton">
-          <a href="/.Pages/galery">
-            Cadastrar
-          </a>
+          <Link to="/Cadastro">Cadastrar</Link>
         </div>
       </div>
     </>
