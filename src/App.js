@@ -4,20 +4,28 @@ import Produtos from "./Pages/Produtos";
 import NavBar from "./Components/NavBar";
 import Info from "./Components/Info";
 import Cadastro from "./Pages/Cadastro";
+import { db } from "./firebase";
+import { collection, getDocs } from "firebase/firestore";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
+  const objectLibrary = collection(db, "Biblioteca");
 
   React.useEffect(() => {
-    //aqui tem que prever se não tiver os dados retornar [] ou nem dar o setListaProd...
-    const ListaStorage = JSON.parse(localStorage.getItem("ListaProdutos")) || []; //se não tiver dados retornar array vazio
-    //console.log(ListaStorage);
-    setListaProdutos(ListaStorage);
+    const getPoducts = async () => {
+      const data = await getDocs(objectLibrary);
+      setListaProdutos(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      )
+    };
+    getPoducts();
   }, []);
-
-  //setListaProdutos(JSON.parse(localStorage.getItem('ListaProdutos')))
+  
   //info part
   const [pMaterial, setPMaterial] = React.useState(120.0);
   const [cEnergia, setCEnergia] = React.useState(0.94);
@@ -25,7 +33,6 @@ function App() {
   const [despesas, setDespesas] = React.useState(80);
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
-
 
   return (
     <BrowserRouter>
@@ -51,16 +58,18 @@ function App() {
                 lucro={lucro}
                 setLucro={setLucro}
               />
-              { <Produtos
-                listaProdutos={listaProdutos}
-                pesquisa={pesquisa}
-                pMaterial={pMaterial}
-                cEnergia={cEnergia}
-                salario={salario}
-                despesas={despesas}
-                primer={primer}
-                lucro={lucro}
-              /> }
+              {
+                <Produtos
+                  listaProdutos={listaProdutos}
+                  pesquisa={pesquisa}
+                  pMaterial={pMaterial}
+                  cEnergia={cEnergia}
+                  salario={salario}
+                  despesas={despesas}
+                  primer={primer}
+                  lucro={lucro}
+                />
+              }
             </div>
           }
         ></Route>

@@ -16,8 +16,7 @@ const Produto = ({ nome, url, preco }) => {
       });
     });
   }, []);
-  console.log(encodeURIComponent(url))
-
+  
   return (
     <>
       <div className="ProdutoContainer">
