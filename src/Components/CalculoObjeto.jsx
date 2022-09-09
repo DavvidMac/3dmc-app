@@ -32,8 +32,9 @@ function Calcular({impressao=0, pla=0, lucro = 30, material = 120, custoenergia 
     Aux_despesas = Timpressao * (despesas / (dias * 8 * 4)) //calcula rasteio das despesas 
     Aux_depreciacao = Timpressao * (invest / (depreciacao * dias * horasd * 4))
     valor = ((Aux_salariototal + Aux_despesas + Aux_totalmaterial + Aux_custoenergia + Aux_depreciacao) * (1 + (lucro * 0.01)) + (Tprimers * primer)+pintura)
+    //console.log(valor)
     
-    return (valor.toFixed(2))
+    return ((parseFloat(valor)).toFixed(2))
 }
 
 export default Calcular

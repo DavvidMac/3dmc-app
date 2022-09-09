@@ -1,38 +1,33 @@
-*{
-    color:#fff;
+* {
+  color: #fff;
 }
 .icone {
-    Width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
-.flexItem{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.flexItem {
+  display: flex;
+  align-items: center;
 }
-.InCalc{
-    height:30px;
-    color: #000;
-    font-size: 12pt;
-    width: 100px;
-    border-radius: 20px;
-    padding: 0 0em 0 1em;
+.InCalc {
+  height: 30px;
+  color: #000;
+  font-size: 12pt;
+  width: 100px;
+  border-radius: 20px;
+  padding: 0 0em 0 1em;
 }
-.line{
-   margin-top: 10px; 
-    display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
+.line {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
 }
-.soma{
-    margin-top: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
-    align-items: center;
+.soma {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
 }
-.flexItem p{
-    margin-left: 10px;
-    font-size: 12pt;
-} 
-
+.flexItem p {
+  margin-left: 10px;
+  font-size: 12pt;
+}

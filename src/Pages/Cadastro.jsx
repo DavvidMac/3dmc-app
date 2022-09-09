@@ -4,9 +4,17 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import "./Cadastro.css";
 import LineCalc from "../Components/LineCalc";
 import { somaHora } from "../utils/tempoUtils";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 } from "uuid";
 let object = []; //lista vazia
 
 function Cadastrar({ listaProdutos, setListaProdutos }) {
+  const [imageUrls, setImageUrls] = React.useState([]);
   //lista de objetos[{tempo,peso},{tempo,peso}]
   const [lista, setLista] = React.useState(object);
   //input tempo e peso
@@ -14,7 +22,9 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
   const [peso, setPeso] = React.useState("");
   //Form cadastro
   const [nome, setNome] = React.useState("");
-  const [url, setUrl] = React.useState("");
+  let url
+  //const [url, setUrl] = React.useState();
+  const [photo, setPhoto] = React.useState(null);
   const [tamanho, setTamanho] = React.useState("");
   const [escala, setEscala] = React.useState("");
   const [pintura, setPintura] = React.useState("");
@@ -41,13 +51,23 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
     setTempo("");
     setPeso("");
   };
+React.useEffect(()=>{
+  localStorage.setItem("ListaProdutos", JSON.stringify(listaProdutos));
+},[listaProdutos])
 
   function adicionar() {
+    if (photo == null) return;
+    url=`images/${photo.name + v4()}`
+     const imageRef = ref(storage, url ); //generate a unic name for images
+    uploadBytes(imageRef, photo).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
     setListaProdutos([
       ...listaProdutos,
-      { nome, url, sumt, summ, tamanho, escala, pintura, primers },
-    ]);
-    localStorage.setItem("ListaProdutos", JSON.stringify(listaProdutos));
+      { nome, url, "tempo":sumt, "peso":summ, tamanho, escala, pintura, primers },
+    ]); 
   }
   return (
     <>
@@ -65,13 +85,12 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
             ></input>
           </label>
           <label>
-            Url Img:
+            Photo:
             <input
               className="CadastroInputProduto"
-              type="text"
-              placeholder="Url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
+              type="file"
+              placeholder="Photo"
+              onChange={(e) => setPhoto(e.target.files[0])}
             ></input>
           </label>
           <label>
@@ -116,8 +135,30 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
           </label>
         </div>
         <div className="CalcContainerCenter">
-          <div className="CalcContainer">
-            <h1 className="CalcTitulo">Cadastrar</h1>
+          <div>
+          <h2 className="CalcTitulo">Lista Partes</h2>
+          <input
+            className="CadastroInputPartes"
+            type="text"
+            placeholder="Tempo"
+            value={tempo}
+            onChange={(e) => setTempo(e.target.value)}
+          ></input>
+          <input
+            className="CadastroInputPartes"
+            type="number"
+            step="0.01"
+            placeholder="Peso"
+            value={peso}
+            onChange={(e) => setPeso(e.target.value)}
+          ></input>
+          <FontAwesomeIcon
+            className="icone"
+            icon={faAdd}
+            alt="icon"
+            onClick={handleAdd}
+          ></FontAwesomeIcon>
+            
             {lista.map((itemm, index) => (
               <LineCalc
                 key={index}
@@ -127,31 +168,10 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
               />
             ))}
             <LineCalc pl_time={sumt} pl_mat={summ} tipo="soma" />
-            <input
-              className="CadastroInputPartes"
-              type="text"
-              placeholder="Tempo"
-              value={tempo}
-              onChange={(e) => setTempo(e.target.value)}
-            ></input>
-            <input
-              className="CadastroInputPartes"
-              type="number"
-              step="0.01"
-              placeholder="Peso"
-              value={peso}
-              onChange={(e) => setPeso(e.target.value)}
-            ></input>
-            <FontAwesomeIcon
-              className="icone"
-              icon={faAdd}
-              alt="icon"
-              onClick={handleAdd}
-            ></FontAwesomeIcon>
+            <button className="CadastroButton" onClick={adicionar}>Salvar</button>
           </div>
         </div>
       </div>
-      <button onClick={adicionar}>Salvar</button>
     </>
   );
 }

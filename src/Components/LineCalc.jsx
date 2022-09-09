@@ -30,7 +30,7 @@ function LineCalc({ pl_time, pl_mat, tipo }) {
                 </div>
                 < div className="flexItem">
                     <FontAwesomeIcon className="icone" icon={faBalanceScaleLeft} alt='icon' ></FontAwesomeIcon>
-                    <p>{pl_mat} Kg</p>
+                    <p>{pl_mat.toFixed(3)} Kg</p>
                 </div>
             </div>
         </>
