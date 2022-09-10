@@ -2,8 +2,10 @@ import React from "react";
 import "./Produto.css";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "../firebase";
+import { db } from "../firebase";
+import { deleteDoc, doc } from "firebase/firestore";
 
-const Produto = ({ nome, url, preco }) => {
+const Produto = ({ nome, url, preco, id }) => {
   const [imageUrls, setImageUrls] = React.useState([]);
   const imagesListRef = ref(storage, "images/");
 
@@ -16,17 +18,33 @@ const Produto = ({ nome, url, preco }) => {
       });
     });
   }, []);
-  
+
+  const deleteitem = async (id) => {
+    //console.log(id.toString())
+    const data = doc(db, "Biblioteca", id);
+    await deleteDoc(data);
+    alert("Objetos Deletado")
+  };
   return (
     <>
       <div className="ProdutoContainer">
-      {imageUrls.filter((produto) =>
-          produto.includes(encodeURIComponent(url)) // O URL SALVO NO ARRAY É DIFERENTO DO QUE CHEGA PELO PADRÃO DE HTTP
-        ).map((produto,index) => 
-          <img key={index} src={produto} alt={index}/>)}                         
+        {imageUrls
+          .filter(
+            (produto) => produto.includes(encodeURIComponent(url)) // O URL SALVO NO ARRAY É DIFERENTe DO QUE CHEGA PELO PADRÃO DE HTTP
+          )
+          .map((produto, index) => (
+            <img key={index} src={produto} alt={index} />
+          ))}
         <div className="ProdutoDescription">
           <h4>{nome}</h4>
-          <p>{preco}</p>
+          <p>R${preco}</p>
+          <button className="ProdutoButton"
+            onClick={() => {
+              deleteitem(id);
+            }}
+          >
+            Excluir
+          </button>
         </div>
       </div>
     </>

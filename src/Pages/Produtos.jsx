@@ -15,6 +15,7 @@ const Produtos = ({ listaProdutos,pesquisa,pMaterial,cEnergia,salario,despesas,p
             key={index}
             url={produto.url}
             nome={produto.nome}
+            id={produto.id}
             preco={
               <Calcular
                 impressao={produto.tempo}

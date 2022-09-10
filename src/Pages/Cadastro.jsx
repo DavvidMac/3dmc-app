@@ -4,12 +4,9 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import "./Cadastro.css";
 import LineCalc from "../Components/LineCalc";
 import { somaHora } from "../utils/tempoUtils";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "firebase/storage";
-import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { storage, db } from "../firebase";
 import { v4 } from "uuid";
 let object = []; //lista vazia
 
@@ -22,7 +19,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
   const [peso, setPeso] = React.useState("");
   //Form cadastro
   const [nome, setNome] = React.useState("");
-  let url
+  let url;
   //const [url, setUrl] = React.useState();
   const [photo, setPhoto] = React.useState(null);
   const [tamanho, setTamanho] = React.useState("");
@@ -32,6 +29,8 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
   //soma material e tempo
   const [summ, setSumm] = React.useState(0);
   const [sumt, setSumT] = React.useState("00:00");
+
+  const objectLibrary = collection(db, "Biblioteca");
 
   useEffect(() => {
     if (lista.length < 1) return;
@@ -47,28 +46,36 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
 
   const handleAdd = () => {
     setLista([...lista, { tempo: tempo, peso: parseFloat(peso) }]);
-    //console.log([...lista, { tempo, peso }])
     setTempo("");
     setPeso("");
   };
-React.useEffect(()=>{
-  localStorage.setItem("ListaProdutos", JSON.stringify(listaProdutos));
-},[listaProdutos])
-
-  function adicionar() {
+  
+  async function adicionar() {
     if (photo == null) return;
-    url=`images/${photo.name + v4()}`
-     const imageRef = ref(storage, url ); //generate a unic name for images
+    url = `images/${photo.name + v4()}`;
+    const imageRef = ref(storage, url); //generate a unic name for images
     uploadBytes(imageRef, photo).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
       });
     });
+    await addDoc(objectLibrary, {
+      nome: nome,
+      tamanho: tamanho,
+      escala: escala,
+      pintura: pintura,
+      primers: primers,
+      url: url,
+      peso: summ,
+      tempo: sumt,
+    });
     setListaProdutos([
       ...listaProdutos,
-      { nome, url, "tempo":sumt, "peso":summ, tamanho, escala, pintura, primers },
-    ]); 
+      { nome, url, tempo: sumt, peso: summ, tamanho, escala, pintura, primers },
+    ]);
+    alert("Objetos cadastrados com sucesso")
   }
+ 
   return (
     <>
       <div className="CadastroPage">
@@ -136,29 +143,29 @@ React.useEffect(()=>{
         </div>
         <div className="CalcContainerCenter">
           <div>
-          <h2 className="CalcTitulo">Lista Partes</h2>
-          <input
-            className="CadastroInputPartes"
-            type="text"
-            placeholder="Tempo"
-            value={tempo}
-            onChange={(e) => setTempo(e.target.value)}
-          ></input>
-          <input
-            className="CadastroInputPartes"
-            type="number"
-            step="0.01"
-            placeholder="Peso"
-            value={peso}
-            onChange={(e) => setPeso(e.target.value)}
-          ></input>
-          <FontAwesomeIcon
-            className="icone"
-            icon={faAdd}
-            alt="icon"
-            onClick={handleAdd}
-          ></FontAwesomeIcon>
-            
+            <h2 className="CalcTitulo">Lista Partes</h2>
+            <input
+              className="CadastroInputPartes"
+              type="text"
+              placeholder="Tempo"
+              value={tempo}
+              onChange={(e) => setTempo(e.target.value)}
+            ></input>
+            <input
+              className="CadastroInputPartes"
+              type="number"
+              step="0.01"
+              placeholder="Peso"
+              value={peso}
+              onChange={(e) => setPeso(e.target.value)}
+            ></input>
+            <FontAwesomeIcon
+              className="icone"
+              icon={faAdd}
+              alt="icon"
+              onClick={handleAdd}
+            ></FontAwesomeIcon>
+
             {lista.map((itemm, index) => (
               <LineCalc
                 key={index}
@@ -168,7 +175,9 @@ React.useEffect(()=>{
               />
             ))}
             <LineCalc pl_time={sumt} pl_mat={summ} tipo="soma" />
-            <button className="CadastroButton" onClick={adicionar}>Salvar</button>
+            <button className="CadastroButton" onClick={adicionar}>
+              Salvar
+            </button>
           </div>
         </div>
       </div>
