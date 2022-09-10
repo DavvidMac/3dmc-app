@@ -1,8 +1,7 @@
 import React from "react";
 import "./Produto.css";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { storage } from "../firebase";
-import { db } from "../firebase";
+import { storage,db } from "../../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 
 const Produto = ({ nome, url, preco, id }) => {

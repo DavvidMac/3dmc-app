@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import Produtos from "./Pages/Produtos";
-import NavBar from "./Components/NavBar";
-import Info from "./Components/Info";
+import NavBar from "./Components/NavBar/NavBar";
+import Info from "./Components/Info/Info";
 import Cadastro from "./Pages/Cadastro";
 import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";

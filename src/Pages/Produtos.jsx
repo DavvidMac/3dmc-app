@@ -1,6 +1,6 @@
 import React from "react";
-import Calcular from "../Components/CalculoObjeto";
-import Produto from "../Components/Produto";
+import Calcular from "../utils/CalculoObjeto";
+import Produto from "../Components/Produto/Produto";
 import "./Produtos.css";
 
 const Produtos = ({ listaProdutos,pesquisa,pMaterial,cEnergia,salario,despesas,primer,lucro }) => {

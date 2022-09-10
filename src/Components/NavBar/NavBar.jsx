@@ -8,7 +8,7 @@ function NavBar({ pesquisa, setPesquisa }) {
       <div className="NavBarTollbar">
         <div className="NavBarContainer">
           <img
-            src={require("../Images/Logo.png")}
+            src={require("./Images/Logo.png")}
             className="NavBarLogo"
             alt="Logo"
           />

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import "./Cadastro.css";
-import LineCalc from "../Components/LineCalc";
+import LineCalc from "../Components/LineCalc/LineCalc";
 import { somaHora } from "../utils/tempoUtils";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, getDocs, addDoc } from "firebase/firestore";
