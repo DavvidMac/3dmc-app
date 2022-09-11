@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import "./Cadastro.css";
-import LineCalc from "../Components/LineCalc/LineCalc";
-import { somaHora } from "../utils/tempoUtils";
+import LineCalc from "../../Components/LineCalc/LineCalc";
+import { somaHora } from "../../Utils/tempoUtils";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, getDocs, addDoc } from "firebase/firestore";
-import { storage, db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { storage, db } from "../../firebase";
 import { v4 } from "uuid";
 let object = []; //lista vazia
 
@@ -171,7 +171,10 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
                 key={index}
                 pl_time={itemm.tempo}
                 pl_mat={itemm.peso}
+                id={index}
                 tipo=""
+                lista={lista}
+                setLista={setLista}
               />
             ))}
             <LineCalc pl_time={sumt} pl_mat={summ} tipo="soma" />

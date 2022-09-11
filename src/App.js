@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import Produtos from "./Pages/Produtos";
+import Produtos from "./Pages/Produtos/Produtos";
 import NavBar from "./Components/NavBar/NavBar";
 import Info from "./Components/Info/Info";
-import Cadastro from "./Pages/Cadastro";
-import { db } from "./firebase";
+import Cadastro from "./Pages/Cadastro/Cadastro";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { storage, db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -12,6 +13,16 @@ function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
   const objectLibrary = collection(db, "Biblioteca");
+  //info part
+  const [pMaterial, setPMaterial] = React.useState(120.0);
+  const [cEnergia, setCEnergia] = React.useState(0.94);
+  const [salario, setSalario] = React.useState(1100);
+  const [despesas, setDespesas] = React.useState(80);
+  const [primer, setPrimer] = React.useState(17.0);
+  const [lucro, setLucro] = React.useState(30);
+  //produto
+  const [imageUrls, setImageUrls] = React.useState([]);
+  const imagesListRef = ref(storage, "images/");
 
   React.useEffect(() => {
     const getPoducts = async () => {
@@ -21,18 +32,21 @@ function App() {
           ...doc.data(),
           id: doc.id,
         }))
-      )
+      );
     };
     getPoducts();
   }, []);
-  
-  //info part
-  const [pMaterial, setPMaterial] = React.useState(120.0);
-  const [cEnergia, setCEnergia] = React.useState(0.94);
-  const [salario, setSalario] = React.useState(1100);
-  const [despesas, setDespesas] = React.useState(80);
-  const [primer, setPrimer] = React.useState(17.0);
-  const [lucro, setLucro] = React.useState(30);
+
+  React.useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+        console.log(imageUrls);
+      });
+    });
+  },[]);
 
   return (
     <BrowserRouter>
@@ -68,6 +82,7 @@ function App() {
                   despesas={despesas}
                   primer={primer}
                   lucro={lucro}
+                  imageUrls={imageUrls}
                 />
               }
             </div>

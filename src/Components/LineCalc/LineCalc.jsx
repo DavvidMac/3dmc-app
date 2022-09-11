@@ -3,7 +3,10 @@ import "./LineCalc.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAdd, faClock, faBalanceScaleLeft, faTrash } from "@fortawesome/free-solid-svg-icons"
 
-function LineCalc({ pl_time, pl_mat, tipo }) {
+function LineCalc({ pl_time, pl_mat, tipo, id,lista,setLista }) {
+    function handleClick(id){
+        setLista(lista.filter(item => item.tempo !== pl_time));
+    }
     if (tipo !== "soma") {
         return (
             <>
@@ -14,8 +17,8 @@ function LineCalc({ pl_time, pl_mat, tipo }) {
                     </div>
                     < div className="flexItem">
                         <FontAwesomeIcon className="icone" icon={faBalanceScaleLeft} alt='icon' ></FontAwesomeIcon>
-                        <p>{pl_mat} Kg</p>
-                        <FontAwesomeIcon className="icone" icon={faTrash} alt='icon' ></FontAwesomeIcon>
+                        <p>{pl_mat.toFixed(3)} Kg</p>
+                        <FontAwesomeIcon onClick={()=>handleClick(id)} className="icone" icon={faTrash} alt='icon' ></FontAwesomeIcon>
                     </div>
                 </div>
             </>
