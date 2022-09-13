@@ -1,6 +1,6 @@
 .CadastroPage{
     display: flex; 
-    flex-wrap: wrap;
+    flex-direction: row;  
 }
 #add{
     bottom: 0px;
@@ -8,8 +8,7 @@
     margin-right: auto;
 }
 .CadastroForm{
-    width: 200px;
-    justify-content: center;
+    width: 250px;
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -23,9 +22,30 @@
     font-size: 12pt;
     height: 22px;
     margin-left: 15px;
-    width: 90px;
+    width: 150px;
     border-radius: 4px;
     /*padding: 0 0em 0 1em;*/
+}
+.CadastroInputFile {
+    color: #000;
+    font-size: 12pt;
+    height: 22px;
+    width: 150px;
+    border-radius: 4px;
+    display: none;
+}
+.cadastroCentIn{
+    margin-left: auto;
+    margin-right: 6px;
+}
+.labelInputimg {
+    margin-top: 2px;
+    padding: 4px 10px;
+    width: 144px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 2px;
 }
 .CadastroInputPartes {
     color: #000;
@@ -39,10 +59,6 @@
 .CalcContainerCenter{
     margin: top 30px;
     margin-left: 20px;
-    display: flex;
-    flex-direction: row;
-    flex:1;
-
 }
 .CalcTitulo{
     margin-left: 5px;
@@ -58,7 +74,10 @@
     padding-right: 6px;
 }
 .CadastroButton{
+    height: 25px;
+    border-radius: 2px;
     font-size: medium;
-    background-color: #4e4f50;
+    color: #000;
+    background-color: #fff;
     border: none;
 }

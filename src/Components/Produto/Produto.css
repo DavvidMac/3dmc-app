@@ -2,15 +2,14 @@
     margin-left: 10px;
     margin-top: 10px;
     width: 200px;
-    /*height: 300px;*/
     background-color: #18191A;
     display:flex;
     flex-direction: column ;
 }
 .ProdutoContainer:hover{
-    box-shadow: 0px 0px 10px #fff
+    box-shadow: 0px 0px 10px #fff;
 }
-img{
+.Produtoimg{
     height:205px ;
     width:200px ;
     object-fit:scale-down;
@@ -21,5 +20,10 @@ img{
     line-height:0.2
 }
 .ProdutoButton{
+    font-weight: 600;
     color: #18191A;
+}
+.ProdutoP{
+    font-size: medium;
+    text-decoration: none;
 }

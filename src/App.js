@@ -4,8 +4,7 @@ import Produtos from "./Pages/Produtos/Produtos";
 import NavBar from "./Components/NavBar/NavBar";
 import Info from "./Components/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
-import { storage, db } from "./firebase";
+import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -20,9 +19,7 @@ function App() {
   const [despesas, setDespesas] = React.useState(80);
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
-  //produto
-  const [imageUrls, setImageUrls] = React.useState([]);
-  const imagesListRef = ref(storage, "images/");
+  const [money,setMoney] =React.useState();
 
   React.useEffect(() => {
     const getPoducts = async () => {
@@ -36,17 +33,6 @@ function App() {
     };
     getPoducts();
   }, []);
-
-  React.useEffect(() => {
-    listAll(imagesListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-        console.log(imageUrls);
-      });
-    });
-  },[]);
 
   return (
     <BrowserRouter>
@@ -82,7 +68,8 @@ function App() {
                   despesas={despesas}
                   primer={primer}
                   lucro={lucro}
-                  imageUrls={imageUrls}
+                  money={money}
+                  setMoney={setMoney}
                 />
               }
             </div>

@@ -13,7 +13,7 @@ function NavBar({ pesquisa, setPesquisa }) {
             alt="Logo"
           />
           <p className="NavBarLojaName">
-            LOJA <Link to="/"><strong>3DMC</strong></Link>
+            LOJA <Link className="NavBara" to="/"><strong>3DMC</strong></Link>
           </p>
         </div>
         <input
@@ -24,7 +24,7 @@ function NavBar({ pesquisa, setPesquisa }) {
           onChange={(event) => setPesquisa(event.target.value)}
         ></input>
         <div className="NavBarContainerButton">
-          <Link to="/Cadastro">Cadastrar</Link>
+          <Link className="NavBara" to="/Cadastro">Add</Link>
         </div>
       </div>
     </>

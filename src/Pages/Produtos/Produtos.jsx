@@ -12,11 +12,13 @@ const Produtos = ({
   despesas,
   primer,
   lucro,
-  imageUrls
+  money,
+  setMoney
 }) => {
+  
   return (
     <div className="ProdutosContainer">
-      <h2 className="ProdutosTitulo">Produtos</h2>
+      <h2 className="ProdutosTitulo">Products</h2>
       <div className="ProdutosLista">
         {listaProdutos
           .filter((produto) =>
@@ -40,6 +42,7 @@ const Produtos = ({
                   despesas={despesas}
                   primer={primer}
                   lucro={lucro}
+                  setMoney={setMoney}
                 />
               }
               tamanho={produto.tamanho}
@@ -48,7 +51,7 @@ const Produtos = ({
               primers={produto.primers}
               tempo={produto.tempo}
               peso={produto.peso}
-              imageUrls={imageUrls}
+              money={money}
             />
           ))}
       </div>

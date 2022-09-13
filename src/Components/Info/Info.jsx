@@ -18,7 +18,7 @@ function Info({
   return (
     <>
       <div className="InfoContainer">
-        <h3 className="InfoTitulo">Informações</h3>
+        <h3 className="InfoTitulo">Information</h3>
         <label>
           Material:
           <input
@@ -29,7 +29,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Energia:
+          Energy:
           <input
             className="InpInfo"
             type="text"
@@ -38,7 +38,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Salario:
+          Pay:
           <input
             className="InpInfo"
             type="text"
@@ -47,7 +47,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Despesas:
+          Expenses:
           <input
             className="InpInfo"
             type="text"
@@ -65,7 +65,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Lucro %:
+          Lucre %:
           <input
             className="InpInfo"
             type="text"

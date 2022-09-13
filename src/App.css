@@ -2,9 +2,7 @@ Body {
   color:#fff;
   background-color: #242526;
 }
-
 .BodyPage{
     display:flex;
-    flex-direction: row;
-    
+    flex-direction: row;  
 }
