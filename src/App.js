@@ -19,7 +19,6 @@ function App() {
   const [despesas, setDespesas] = React.useState(80);
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
-  const [money,setMoney] =React.useState();
 
   React.useEffect(() => {
     const getPoducts = async () => {
@@ -32,7 +31,7 @@ function App() {
       );
     };
     getPoducts();
-  }, []);
+  }, [objectLibrary]);
 
   return (
     <BrowserRouter>
@@ -68,8 +67,6 @@ function App() {
                   despesas={despesas}
                   primer={primer}
                   lucro={lucro}
-                  money={money}
-                  setMoney={setMoney}
                 />
               }
             </div>

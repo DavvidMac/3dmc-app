@@ -147,7 +147,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
             <input
               className="CadastroInputPartes"
               type="text"
-              placeholder="Tempo"
+              placeholder="Time"
               value={tempo}
               onChange={(e) => setTempo(e.target.value)}
             ></input>
@@ -155,7 +155,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
               className="CadastroInputPartes"
               type="number"
               step="0.01"
-              placeholder="Peso"
+              placeholder="Weight"
               value={peso}
               onChange={(e) => setPeso(e.target.value)}
             ></input>

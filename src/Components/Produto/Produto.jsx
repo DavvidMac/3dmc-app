@@ -1,19 +1,18 @@
 import React from "react";
 import "./Produto.css";
-import { Link } from "react-router-dom";
-import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { ref, getDownloadURL, listAll ,getStorage, deleteObject } from "firebase/storage";
 import { storage, db } from "../../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
-const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso,money }) => {
+
+const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso }) => {
   const [imageUrls, setImageUrls] = React.useState([]);
   const imagesListRef = ref(storage, "images/");
 
   const deleteitem = async (id) => {
     const data = doc(db, "Biblioteca", id);
     await deleteDoc(data);
-    alert("Objeto Deletado");
+    deleteObject(ref(storage,url));
   };
-
   React.useEffect(() => {
     listAll(imagesListRef).then((response) => {
       response.items.forEach((item) => {
@@ -23,10 +22,8 @@ const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso,money }) 
       });
     });
   }, []);
-//<p className="ProdutoP">Money:{money}</p>
   return (
     <>
-    
       <div className="ProdutoContainer">
         {imageUrls
           .filter(
@@ -39,7 +36,6 @@ const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso,money }) 
           <h4>{nome}</h4>
           <p>Priece R$ {preco}</p>
           <p className="ProdutoP">Paint: {pintura}</p>
-          
           <p className="ProdutoP">Primers: {primers}</p>
           <p className="ProdutoP">Time: {tempo}</p>
           <p className="ProdutoP">Weight: {peso.toFixed(3)}</p>
