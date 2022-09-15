@@ -27,3 +27,8 @@
     padding-left: 6px;
     padding-right: 6px;
 }
+.InfoButton{
+    color: #000;
+    font-weight: 600;
+    width: 60px;
+}

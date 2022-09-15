@@ -1,5 +1,7 @@
 import React from "react";
 import "./Info.css";
+import { db } from "../../firebase";
+import { updateDoc,doc } from "firebase/firestore";
 
 function Info({
   pMaterial,
@@ -15,6 +17,20 @@ function Info({
   lucro,
   setLucro,
 }) {
+
+  const send= async () =>{
+    const infoDoc=doc(db,"Info",'jNVr2acKQhCmIsiDMDED')
+    await updateDoc(infoDoc, {
+      pMaterial,
+      cEnergia,
+      salario,
+      despesas,
+      primer,
+      lucro,
+    });
+    alert("Information saved");
+  }
+  
   return (
     <>
       <div className="InfoContainer">
@@ -73,6 +89,7 @@ function Info({
             onChange={(event) => setLucro(event.target.value)}
           ></input>
         </label>
+        <button onClick={send} className="InfoButton">Send</button>
       </div>
     </>
   );

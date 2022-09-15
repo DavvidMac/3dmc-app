@@ -12,6 +12,7 @@ function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
   const objectLibrary = collection(db, "Biblioteca");
+  const infoLibrary = collection(db, "Info");
   //info part
   const [pMaterial, setPMaterial] = React.useState(120.0);
   const [cEnergia, setCEnergia] = React.useState(0.94);
@@ -19,6 +20,19 @@ function App() {
   const [despesas, setDespesas] = React.useState(80);
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
+
+  const [infos,setInfos] =React.useState()//get from firebase
+
+  React.useEffect(() => {
+    if (infos!==undefined){
+      setLucro(infos[0].lucro)
+      setDespesas(infos[0].despesas)
+      setPMaterial(infos[0].pMaterial)
+      setPrimer(infos[0].primer)
+      setSalario(infos[0].salario)
+      setCEnergia(infos[0].cEnergia)
+    }
+  },[infos])
 
   React.useEffect(() => {
     const getPoducts = async () => {
@@ -30,9 +44,17 @@ function App() {
         }))
       );
     };
+    const getInfo = async () => {
+      const data = await getDocs(infoLibrary);
+      setInfos(data.docs.map((doc) => ({
+        ...doc.data(),
+      })))
+    };
     getPoducts();
-  }, [objectLibrary]);
-
+    getInfo();
+   
+  }, []);
+ 
   return (
     <BrowserRouter>
       <div className="App">
