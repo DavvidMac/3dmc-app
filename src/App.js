@@ -6,7 +6,7 @@ import Info from "./Components/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
 import { db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
@@ -56,7 +56,7 @@ function App() {
   }, []);
  
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
       </div>
@@ -104,7 +104,7 @@ function App() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
