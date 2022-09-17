@@ -28,6 +28,7 @@ const Produtos = ({
               url={produto.url}
               nome={produto.nome}
               id={produto.id}
+              idProduto={produto.idProduto}
               preco={
                 <Calcular
                   impressao={produto.tempo}

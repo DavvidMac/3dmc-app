@@ -1,6 +1,6 @@
 import React from "react";
 import "./Info.css";
-import { db } from "../../firebase";
+import { db } from "../../Utils/firebase";
 import { updateDoc,doc } from "firebase/firestore";
 
 function Info({

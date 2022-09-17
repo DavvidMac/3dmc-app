@@ -6,7 +6,7 @@ import LineCalc from "../../Components/LineCalc/LineCalc";
 import { somaHora } from "../../Utils/tempoUtils";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import { storage, db } from "../../firebase";
+import { storage, db } from "../../Utils/firebase";
 import { v4 } from "uuid";
 let object = []; //lista vazia
 
@@ -17,6 +17,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
   const [tempo, setTempo] = React.useState("");
   const [peso, setPeso] = React.useState("");
   //Form cadastro
+  const [idProduto,setIdProduto]=React.useState("")
   const [nome, setNome] = React.useState("");
   let url; //variavel recebe os url
   const [photo, setPhoto] = React.useState(null);
@@ -54,6 +55,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
       });
     });
     await addDoc(objectLibrary, {
+      idProduto:idProduto,
       nome: nome,
       tamanho: tamanho,
       escala: escala,
@@ -76,6 +78,17 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
         <div>
           <div className="CadastroForm">
             <h3 className="CadastroTitulo">Product</h3>
+            <label>
+              Id:
+              <input
+                className="CadastroInputProduto"
+                required="required"
+                type="text"
+                placeholder="Id Product"
+                value={idProduto}
+                onChange={(e) => setIdProduto(e.target.value)}
+              ></input>
+            </label>
             <label>
               Name:
               <input

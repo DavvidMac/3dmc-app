@@ -4,7 +4,7 @@ import Produtos from "./Pages/Produtos/Produtos";
 import NavBar from "./Components/NavBar/NavBar";
 import Info from "./Components/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
-import { db } from "./firebase";
+import { db } from "./Utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { HashRouter, Route, Routes } from "react-router-dom";
 

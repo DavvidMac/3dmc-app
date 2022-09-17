@@ -1,10 +1,10 @@
 import React from "react";
 import "./Produto.css";
 import { ref, getDownloadURL, listAll ,getStorage, deleteObject } from "firebase/storage";
-import { storage, db } from "../../firebase";
+import { storage, db } from "../../Utils/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 
-const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso }) => {
+const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso }) => {
   const [imageUrls, setImageUrls] = React.useState([]);
   const imagesListRef = ref(storage, "images/");
 
@@ -34,6 +34,7 @@ const Produto = ({ nome, url, preco, id, pintura, primers, tempo, peso }) => {
           ))}
         <div className="ProdutoDescription">
           <h4>{nome}</h4>
+          <p>{idProduto}</p>
           <p>Priece R$ {preco}</p>
           <p className="ProdutoP">Paint: {pintura}</p>
           <p className="ProdutoP">Primers: {primers}</p>
