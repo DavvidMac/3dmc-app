@@ -35,7 +35,7 @@ const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso
         <div className="ProdutoDescription">
           <h4>{nome}</h4>
           <p>{idProduto}</p>
-          <p>Priece R$ {preco}</p>
+          <p>Price R$ {preco}</p>
           <p className="ProdutoP">Paint: {pintura}</p>
           <p className="ProdutoP">Primers: {primers}</p>
           <p className="ProdutoP">Time: {tempo}</p>

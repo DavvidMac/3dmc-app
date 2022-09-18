@@ -7,6 +7,7 @@ import Cadastro from "./Pages/Cadastro/Cadastro";
 import { db } from "./Utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { HashRouter, Route, Routes } from "react-router-dom";
+import Export from "./Pages/ExportData/Export";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
@@ -103,6 +104,7 @@ function App() {
             />
           }
         />
+        <Route path="/Export" element={<Export listaProdutos={listaProdutos}/>}></Route>
       </Routes>
     </HashRouter>
   );
