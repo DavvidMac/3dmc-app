@@ -4,7 +4,7 @@ import { ref, getDownloadURL, listAll ,getStorage, deleteObject } from "firebase
 import { storage, db } from "../../Utils/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 
-const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso }) => {
+const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso,money }) => {
   const [imageUrls, setImageUrls] = React.useState([]);
   const imagesListRef = ref(storage, "images/");
 
@@ -12,6 +12,7 @@ const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso
     const data = doc(db, "Biblioteca", id);
     await deleteDoc(data);
     deleteObject(ref(storage,url));
+    alert(`Item ${nome} excluded`);
   };
   React.useEffect(() => {
     listAll(imagesListRef).then((response) => {
@@ -36,6 +37,7 @@ const Produto = ({ nome, url, preco, id,idProduto, pintura, primers, tempo, peso
           <h4>{nome}</h4>
           <p>{idProduto}</p>
           <p>Price R$ {preco}</p>
+          <p>Pay R$:{money}</p>
           <p className="ProdutoP">Paint: {pintura}</p>
           <p className="ProdutoP">Primers: {primers}</p>
           <p className="ProdutoP">Time: {tempo}</p>

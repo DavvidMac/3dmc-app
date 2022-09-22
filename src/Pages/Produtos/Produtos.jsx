@@ -28,27 +28,15 @@ const Produtos = ({
               url={produto.url}
               nome={produto.nome}
               id={produto.id}
+              money={produto.money}
               idProduto={produto.idProduto}
-              preco={
-                <Calcular
-                  impressao={produto.tempo}
-                  pla={produto.peso}
-                  Tprimers={produto.primers}
-                  pintura={produto.pintura}
-                  material={pMaterial}
-                  custoenergia={cEnergia}
-                  salario={salario}
-                  despesas={despesas}
-                  primer={primer}
-                  lucro={lucro}
-                />
-              }
               tamanho={produto.tamanho}
               escala={produto.escala}
               pintura={produto.pintura}
               primers={produto.primers}
               tempo={produto.tempo}
               peso={produto.peso}
+              preco={produto.preco}
             />
           ))}
       </div>

@@ -22,18 +22,18 @@ function App() {
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
 
-  const [infos,setInfos] =React.useState()//get from firebase
+  const [infos, setInfos] = React.useState(); //get from firebase
 
   React.useEffect(() => {
-    if (infos!==undefined){
-      setLucro(infos[0].lucro)
-      setDespesas(infos[0].despesas)
-      setPMaterial(infos[0].pMaterial)
-      setPrimer(infos[0].primer)
-      setSalario(infos[0].salario)
-      setCEnergia(infos[0].cEnergia)
+    if (infos !== undefined) {
+      setLucro(infos[0].lucro);
+      setDespesas(infos[0].despesas);
+      setPMaterial(infos[0].pMaterial);
+      setPrimer(infos[0].primer);
+      setSalario(infos[0].salario);
+      setCEnergia(infos[0].cEnergia);
     }
-  },[infos])
+  }, [infos]);
 
   React.useEffect(() => {
     const getPoducts = async () => {
@@ -47,15 +47,16 @@ function App() {
     };
     const getInfo = async () => {
       const data = await getDocs(infoLibrary);
-      setInfos(data.docs.map((doc) => ({
-        ...doc.data(),
-      })))
+      setInfos(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+        }))
+      );
     };
     getPoducts();
     getInfo();
-   
   }, []);
- 
+
   return (
     <HashRouter>
       <div className="App">
@@ -101,10 +102,19 @@ function App() {
             <Cadastro
               listaProdutos={listaProdutos}
               setListaProdutos={setListaProdutos}
+              pMaterial={pMaterial}
+              cEnergia={cEnergia}
+              salario={salario}
+              despesas={despesas}
+              primer={primer}
+              lucro={lucro}
             />
           }
         />
-        <Route path="/Export" element={<Export listaProdutos={listaProdutos}/>}></Route>
+        <Route
+          path="/Export"
+          element={<Export listaProdutos={listaProdutos} />}
+        ></Route>
       </Routes>
     </HashRouter>
   );

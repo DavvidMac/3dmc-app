@@ -8,9 +8,10 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { storage, db } from "../../Utils/firebase";
 import { v4 } from "uuid";
+import Calcular from "../../Utils/CalculoObjeto"
 let object = []; //lista vazia
 
-function Cadastrar({ listaProdutos, setListaProdutos }) {
+function Cadastrar({ listaProdutos, setListaProdutos,pMaterial,cEnergia,salario,despesas,primer,lucro }) {
   const [imageUrls, setImageUrls] = React.useState([]);
   const [lista, setLista] = React.useState(object); //lista de objetos[{tempo,peso},{tempo,peso}]
   //input tempo e peso
@@ -29,6 +30,8 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
   const [summ, setSumm] = React.useState(0);
   const [sumt, setSumT] = React.useState("00:00");
   const objectLibrary = collection(db, "Biblioteca"); //firebase
+  var precoFinal
+  var money
 
   useEffect(() => {
     if (lista.length < 1) return;
@@ -46,6 +49,30 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
     setPeso("");
   };
   async function adicionar() {
+    precoFinal=Calcular({
+      impressao:sumt,
+      pla:summ,
+      material:pMaterial,
+      custoenergia:cEnergia,
+      salario:salario,
+      despesas:despesas,
+      primer:primer,
+      Tprimers:primers,
+      pintura:pintura,
+      isPrice:true
+      })
+      money=Calcular({
+        impressao:sumt,
+        pla:summ,
+        material:pMaterial,
+        custoenergia:cEnergia,
+        salario:salario,
+        despesas:despesas,
+        primer:primer,
+        Tprimers:primers,
+        pintura:pintura,
+        isPrice:false
+        })
     if (photo == null) return;
     url = `images/${photo.name + v4()}`;
     const imageRef = ref(storage, url); //generate a unic name for images
@@ -64,6 +91,8 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
       url: url,
       peso: summ,
       tempo: sumt,
+      preco:precoFinal,
+      money:money
     });
     setListaProdutos([
       ...listaProdutos,
@@ -194,6 +223,7 @@ function Cadastrar({ listaProdutos, setListaProdutos }) {
             <button className="CadastroButton" onClick={adicionar}>
               Save
             </button>
+            
           </div>
         </div>
       </div>
