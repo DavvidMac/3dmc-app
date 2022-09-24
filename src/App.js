@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Produtos from "./Pages/Produtos/Produtos";
 import NavBar from "./Components/NavBar/NavBar";
-import Info from "./Components/Info/Info";
+import Info from "./Pages/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
 import { db } from "./Utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -66,22 +66,7 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="BodyPage">
-              <Info
-                pMaterial={pMaterial}
-                setPMaterial={setPMaterial}
-                cEnergia={cEnergia}
-                setCEnergia={setCEnergia}
-                salario={salario}
-                setSalario={setSalario}
-                despesas={despesas}
-                setDespesas={setDespesas}
-                primer={primer}
-                setPrimer={setPrimer}
-                lucro={lucro}
-                setLucro={setLucro}
-                listaProdutos={listaProdutos}
-              />
+            <div>
               {
                 <Produtos
                   listaProdutos={listaProdutos}
@@ -115,6 +100,24 @@ function App() {
         <Route
           path="/Export"
           element={<Export listaProdutos={listaProdutos} />}
+        ></Route>
+        <Route
+          path="/Info"
+          element={<Info
+            pMaterial={pMaterial}
+            setPMaterial={setPMaterial}
+            cEnergia={cEnergia}
+            setCEnergia={setCEnergia}
+            salario={salario}
+            setSalario={setSalario}
+            despesas={despesas}
+            setDespesas={setDespesas}
+            primer={primer}
+            setPrimer={setPrimer}
+            lucro={lucro}
+            setLucro={setLucro}
+            listaProdutos={listaProdutos}
+          />}
         ></Route>
       </Routes>
     </HashRouter>

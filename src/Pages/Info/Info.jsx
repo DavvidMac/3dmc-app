@@ -1,7 +1,7 @@
 import React from "react";
 import "./Info.css";
 import { db } from "../../Utils/firebase";
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, setDoc, doc } from "firebase/firestore";
 import Calcular from "../../Utils/CalculoObjeto";
 
 var isPrice;
@@ -31,7 +31,6 @@ function Info({
       lucro,
     });
     alert("Information saved");
-    //aqui eu vou precisar dar um map da lista mudando o preço do objeto utilizando o calculo.
     var listaNova = listaProdutos.map((produto) => ({
       ...produto,
       preco: Calcular({
@@ -43,7 +42,7 @@ function Info({
         salario,
         despesas,
         primer,
-        primers: produto.primers,
+        Tprimers: produto.primers,
         pintura: produto.pintura,
         isPrice: (isPrice = true),
       }),
@@ -56,20 +55,25 @@ function Info({
         salario,
         despesas,
         primer,
-        primers: produto.primers,
+        Tprimers: produto.primers,
         pintura: produto.pintura,
         isPrice: (isPrice = false),
       }),
     }));
-    console.log(listaNova);
+    //console.log(listaNova);
+    listaNova.map((item) => updateProducts(item));
   };
-
+  const updateProducts = async (item) => {
+    console.log(item);
+    const userDoc = doc(db, "Biblioteca", item.id);
+    await updateDoc(userDoc, { money: item.money, preco: item.preco });
+  };
   return (
     <>
       <div className="InfoContainer">
         <h3 className="InfoTitulo">Information</h3>
         <label>
-          Material:
+          Material Price R$:
           <input
             className="InpInfo"
             type="text"
@@ -78,7 +82,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Energy:
+          Energy Kw:
           <input
             className="InpInfo"
             type="text"
@@ -87,7 +91,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Pay:
+          Pay R$:
           <input
             className="InpInfo"
             type="text"
@@ -96,7 +100,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Expenses:
+          Expenses R$:
           <input
             className="InpInfo"
             type="text"
@@ -105,7 +109,7 @@ function Info({
           ></input>
         </label>
         <label>
-          Primer:
+          Primer Price:
           <input
             className="InpInfo"
             type="text"

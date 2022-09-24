@@ -26,6 +26,7 @@ function NavBar({ pesquisa, setPesquisa }) {
         <div className="NavBarContainerButton">
           <Link className="NavBara" to="/Cadastro">Add</Link>
           <Link className="NavBara" to="/Export">Export</Link>
+          <Link className="NavBara" to="/Info">Info</Link>
         </div>
       </div>
     </>

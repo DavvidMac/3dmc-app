@@ -2,6 +2,7 @@
     margin-left: 10px;
     margin-top: 10px;
     width: 200px;
+    height: auto;
     background-color: #18191A;
     display:flex;
     flex-direction: column ;
@@ -15,15 +16,14 @@
     object-fit:scale-down;
 }
 .ProdutoDescription{
-    margin-left:10px ;
-    margin-top: 10px;
-    line-height:0.2
+    line-height:0.2;
 }
+
 .ProdutoButton{
     font-weight: 600;
     color: #18191A;
 }
 .ProdutoP{
-    font-size: medium;
+    font-size: small;
     text-decoration: none;
 }
