@@ -80,6 +80,7 @@ function App() {
                 setPrimer={setPrimer}
                 lucro={lucro}
                 setLucro={setLucro}
+                listaProdutos={listaProdutos}
               />
               {
                 <Produtos

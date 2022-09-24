@@ -1,8 +1,10 @@
 import React from "react";
 import "./Info.css";
 import { db } from "../../Utils/firebase";
-import { updateDoc,doc } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
+import Calcular from "../../Utils/CalculoObjeto";
 
+var isPrice;
 function Info({
   pMaterial,
   setPMaterial,
@@ -16,10 +18,10 @@ function Info({
   setPrimer,
   lucro,
   setLucro,
+  listaProdutos,
 }) {
-
-  const send= async () =>{
-    const infoDoc=doc(db,"Info",'jNVr2acKQhCmIsiDMDED')
+  const send = async () => {
+    const infoDoc = doc(db, "Info", "jNVr2acKQhCmIsiDMDED");
     await updateDoc(infoDoc, {
       pMaterial,
       cEnergia,
@@ -29,8 +31,39 @@ function Info({
       lucro,
     });
     alert("Information saved");
-  }
-  
+    //aqui eu vou precisar dar um map da lista mudando o preço do objeto utilizando o calculo.
+    var listaNova = listaProdutos.map((produto) => ({
+      ...produto,
+      preco: Calcular({
+        impressao: produto.tempo,
+        pla: produto.peso,
+        lucro,
+        pMaterial,
+        cEnergia,
+        salario,
+        despesas,
+        primer,
+        primers: produto.primers,
+        pintura: produto.pintura,
+        isPrice: (isPrice = true),
+      }),
+      money: Calcular({
+        impressao: produto.tempo,
+        pla: produto.peso,
+        lucro,
+        pMaterial,
+        cEnergia,
+        salario,
+        despesas,
+        primer,
+        primers: produto.primers,
+        pintura: produto.pintura,
+        isPrice: (isPrice = false),
+      }),
+    }));
+    console.log(listaNova);
+  };
+
   return (
     <>
       <div className="InfoContainer">
@@ -89,7 +122,9 @@ function Info({
             onChange={(event) => setLucro(event.target.value)}
           ></input>
         </label>
-        <button onClick={send} className="InfoButton">Send</button>
+        <button onClick={send} className="InfoButton">
+          Send
+        </button>
       </div>
     </>
   );
