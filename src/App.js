@@ -4,12 +4,14 @@ import Produtos from "./Pages/Produtos/Produtos";
 import NavBar from "./Components/NavBar/NavBar";
 import Info from "./Pages/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
-import { db } from "./Utils/firebase";
+import { storage ,db } from "./Utils/firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Export from "./Pages/ExportData/Export";
 
 function App() {
+  
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
   const objectLibrary = collection(db, "Biblioteca");
@@ -24,6 +26,19 @@ function App() {
 
   const [infos, setInfos] = React.useState(); //get from firebase
 
+  const imagesListRef = ref(storage, "images/");
+  const [imageUrls, setImageUrls] = React.useState([]);
+
+  React.useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   React.useEffect(() => {
     if (infos !== undefined) {
       setLucro(infos[0].lucro);
@@ -34,7 +49,6 @@ function App() {
       setCEnergia(infos[0].cEnergia);
     }
   }, [infos]);
-
   React.useEffect(() => {
     const getPoducts = async () => {
       const data = await getDocs(objectLibrary);
@@ -77,6 +91,7 @@ function App() {
                   despesas={despesas}
                   primer={primer}
                   lucro={lucro}
+                  imageUrls={imageUrls}
                 />
               }
             </div>
@@ -103,21 +118,23 @@ function App() {
         ></Route>
         <Route
           path="/Info"
-          element={<Info
-            pMaterial={pMaterial}
-            setPMaterial={setPMaterial}
-            cEnergia={cEnergia}
-            setCEnergia={setCEnergia}
-            salario={salario}
-            setSalario={setSalario}
-            despesas={despesas}
-            setDespesas={setDespesas}
-            primer={primer}
-            setPrimer={setPrimer}
-            lucro={lucro}
-            setLucro={setLucro}
-            listaProdutos={listaProdutos}
-          />}
+          element={
+            <Info
+              pMaterial={pMaterial}
+              setPMaterial={setPMaterial}
+              cEnergia={cEnergia}
+              setCEnergia={setCEnergia}
+              salario={salario}
+              setSalario={setSalario}
+              despesas={despesas}
+              setDespesas={setDespesas}
+              primer={primer}
+              setPrimer={setPrimer}
+              lucro={lucro}
+              setLucro={setLucro}
+              listaProdutos={listaProdutos}
+            />
+          }
         ></Route>
       </Routes>
     </HashRouter>

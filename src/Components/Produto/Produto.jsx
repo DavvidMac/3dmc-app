@@ -2,9 +2,6 @@ import React from "react";
 import "./Produto.css";
 import {
   ref,
-  getDownloadURL,
-  listAll,
-  getStorage,
   deleteObject,
 } from "firebase/storage";
 import { storage, db } from "../../Utils/firebase";
@@ -21,9 +18,8 @@ const Produto = ({
   tempo,
   peso,
   money,
+  imageUrls
 }) => {
-  const [imageUrls, setImageUrls] = React.useState([]);
-  const imagesListRef = ref(storage, "images/");
 
   const deleteitem = async (id) => {
     const data = doc(db, "Biblioteca", id);
@@ -31,15 +27,7 @@ const Produto = ({
     deleteObject(ref(storage, url));
     alert(`Item ${nome} excluded`);
   };
-  React.useEffect(() => {
-    listAll(imagesListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
+
   return (
     <>
       <div>

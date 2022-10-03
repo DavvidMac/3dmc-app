@@ -20,13 +20,12 @@ const Export = (listaProdutos) => {
       };
       reader.readAsText(csvFile);
     }
-    
-    console.log(newArray)
   }
-  
-  React.useEffect(() => {
-      setNewArray(arrayToCsv(a));
-  }, [a]);
+  function download(){
+    if (a!==null){
+      setNewArray(arrayToCsv(listaProdutos))
+    }
+  }
   return (
     <div className="App">
       <form id="myForm">
@@ -39,6 +38,7 @@ const Export = (listaProdutos) => {
         <br />
         <input type="submit" value="Enviar" onClick={(e) => handleClick(e)} />
       </form>
+      <input  onClick={(a) => download(a)} />
       {a.map((produto, index) => (
         <p key={index}>
           {produto.name}|{produto.price}

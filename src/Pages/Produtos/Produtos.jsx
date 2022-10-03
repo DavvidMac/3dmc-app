@@ -11,7 +11,8 @@ const Produtos = ({
   salario,
   despesas,
   primer,
-  lucro
+  lucro,
+  imageUrls
 }) => {
   
   return (
@@ -37,6 +38,7 @@ const Produtos = ({
               tempo={produto.tempo}
               peso={produto.peso}
               preco={produto.preco}
+              imageUrls={imageUrls}
             />
           ))}
       </div>
