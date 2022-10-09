@@ -2,30 +2,34 @@
     text-align: center;
     line-height: 0.08;
 }
-
 .InpInfo {
     color: #000;
     font-size: 12pt;
     height: 22px;
-    width: 50PX;
+    width: 100PX;
     border-radius: 5px;
     padding: 0 0em 0 1em;
 }
 .InfoContainer {
     display: flex;
     flex-direction: column;
+    margin:auto;
     margin-top: 30px;
-    margin-left: 10px;
-    height:210px;
-    width: 200px;
+    width: 300px;
     background-color: #18191a;
     border-radius: 5px;
     padding: 5px;
 }
-
 .InfoContainer label{
     display: flex;
     justify-content: space-between;
     padding-left: 6px;
     padding-right: 6px;
+}
+.InfoButton{
+    margin: auto;
+    margin-top: 15px;
+    color: #000;
+    font-weight: 600;
+    width: 60px;
 }

@@ -1,23 +1,21 @@
 import React from "react";
 import "./App.css";
-import Produtos from "./Pages/Produtos";
-import NavBar from "./Components/NavBar";
-import Info from "./Components/Info";
-import Cadastro from "./Pages/Cadastro";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Produtos from "./Pages/Produtos/Produtos";
+import NavBar from "./Components/NavBar/NavBar";
+import Info from "./Pages/Info/Info";
+import Cadastro from "./Pages/Cadastro/Cadastro";
+import { storage ,db } from "./Utils/firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import Export from "./Pages/ExportData/Export";
 
 function App() {
+  
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
-
-  React.useEffect(() => {
-    //aqui tem que prever se não tiver os dados retornar [] ou nem dar o setListaProd...
-    const ListaStorage = JSON.parse(localStorage.getItem("ListaProdutos")) || []; //se não tiver dados retornar array vazio
-    //console.log(ListaStorage);
-    setListaProdutos(ListaStorage);
-  }, []);
-
-  //setListaProdutos(JSON.parse(localStorage.getItem('ListaProdutos')))
+  const objectLibrary = collection(db, "Biblioteca");
+  const infoLibrary = collection(db, "Info");
   //info part
   const [pMaterial, setPMaterial] = React.useState(120.0);
   const [cEnergia, setCEnergia] = React.useState(0.94);
@@ -26,9 +24,55 @@ function App() {
   const [primer, setPrimer] = React.useState(17.0);
   const [lucro, setLucro] = React.useState(30);
 
+  const [infos, setInfos] = React.useState(); //get from firebase
+
+  const imagesListRef = ref(storage, "images/");
+  const [imageUrls, setImageUrls] = React.useState([]);
+
+  React.useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
+  React.useEffect(() => {
+    if (infos !== undefined) {
+      setLucro(infos[0].lucro);
+      setDespesas(infos[0].despesas);
+      setPMaterial(infos[0].pMaterial);
+      setPrimer(infos[0].primer);
+      setSalario(infos[0].salario);
+      setCEnergia(infos[0].cEnergia);
+    }
+  }, [infos]);
+  React.useEffect(() => {
+    const getPoducts = async () => {
+      const data = await getDocs(objectLibrary);
+      setListaProdutos(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    };
+    const getInfo = async () => {
+      const data = await getDocs(infoLibrary);
+      setInfos(
+        data.docs.map((doc) => ({
+          ...doc.data(),
+        }))
+      );
+    };
+    getPoducts();
+    getInfo();
+  }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
       </div>
@@ -36,31 +80,20 @@ function App() {
         <Route
           path="/"
           element={
-            <div className="BodyPage">
-              <Info
-                pMaterial={pMaterial}
-                setPMaterial={setPMaterial}
-                cEnergia={cEnergia}
-                setCEnergia={setCEnergia}
-                salario={salario}
-                setSalario={setSalario}
-                despesas={despesas}
-                setDespesas={setDespesas}
-                primer={primer}
-                setPrimer={setPrimer}
-                lucro={lucro}
-                setLucro={setLucro}
-              />
-              { <Produtos
-                listaProdutos={listaProdutos}
-                pesquisa={pesquisa}
-                pMaterial={pMaterial}
-                cEnergia={cEnergia}
-                salario={salario}
-                despesas={despesas}
-                primer={primer}
-                lucro={lucro}
-              /> }
+            <div>
+              {
+                <Produtos
+                  listaProdutos={listaProdutos}
+                  pesquisa={pesquisa}
+                  pMaterial={pMaterial}
+                  cEnergia={cEnergia}
+                  salario={salario}
+                  despesas={despesas}
+                  primer={primer}
+                  lucro={lucro}
+                  imageUrls={imageUrls}
+                />
+              }
             </div>
           }
         ></Route>
@@ -70,11 +103,41 @@ function App() {
             <Cadastro
               listaProdutos={listaProdutos}
               setListaProdutos={setListaProdutos}
+              pMaterial={pMaterial}
+              cEnergia={cEnergia}
+              salario={salario}
+              despesas={despesas}
+              primer={primer}
+              lucro={lucro}
             />
           }
         />
+        <Route
+          path="/Export"
+          element={<Export listaProdutos={listaProdutos} />}
+        ></Route>
+        <Route
+          path="/Info"
+          element={
+            <Info
+              pMaterial={pMaterial}
+              setPMaterial={setPMaterial}
+              cEnergia={cEnergia}
+              setCEnergia={setCEnergia}
+              salario={salario}
+              setSalario={setSalario}
+              despesas={despesas}
+              setDespesas={setDespesas}
+              primer={primer}
+              setPrimer={setPrimer}
+              lucro={lucro}
+              setLucro={setLucro}
+              listaProdutos={listaProdutos}
+            />
+          }
+        ></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

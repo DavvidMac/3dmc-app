@@ -8,12 +8,12 @@ function NavBar({ pesquisa, setPesquisa }) {
       <div className="NavBarTollbar">
         <div className="NavBarContainer">
           <img
-            src={require("../Images/Logo.png")}
+            src={require("./Images/Logo.png")}
             className="NavBarLogo"
             alt="Logo"
           />
           <p className="NavBarLojaName">
-            LOJA <Link to="/"><strong>3DMC</strong></Link>
+            LOJA <Link className="NavBara" to="/"><strong>3DMC</strong></Link>
           </p>
         </div>
         <input
@@ -24,7 +24,9 @@ function NavBar({ pesquisa, setPesquisa }) {
           onChange={(event) => setPesquisa(event.target.value)}
         ></input>
         <div className="NavBarContainerButton">
-          <Link to="/Cadastro">Cadastrar</Link>
+          <Link className="NavBara" to="/Cadastro">Add</Link>
+          <Link className="NavBara" to="/Export">Export</Link>
+          <Link className="NavBara" to="/Info">Info</Link>
         </div>
       </div>
     </>
