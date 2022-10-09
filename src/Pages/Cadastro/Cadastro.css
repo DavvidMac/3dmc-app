@@ -1,0 +1,113 @@
+.CadastroPage{
+    display: flex; 
+    flex-direction: row;  
+}
+#add{
+    bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.CadastroForm{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    background-color: #18191a;
+    border-radius: 5px;
+    padding: 5px;
+}
+.CadastroInputProduto {
+    color: #000;
+    font-size: 12pt;
+    height: 22px;
+    margin-left: 15px;
+    width: 150px;
+    border-radius: 4px;
+    /*padding: 0 0em 0 1em;*/
+}
+.CadastroInputFile {
+    color: #000;
+    font-size: 12pt;
+    height: 22px;
+    width: 150px;
+    border-radius: 4px;
+    display: none;
+}
+.CadastroCentIn{
+    margin-left: auto;
+    margin-right: 6px;
+}
+.labelInputimg {
+    margin: auto;
+    margin-top: 2px;
+    padding: 4px 10px;
+    width: 220px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.CadastroInputPartes {
+    color: #000;
+    font-size: 12pt;
+    margin-left: 15px;
+    height: 22px;
+    width: 80px;
+    border-radius: 4px;
+    padding: 0 0em 0 1em;
+}
+.CadastroCalcContainerCenter{
+    background-color: #18191A;
+    display:flex;
+    flex-direction: column;
+    width: 500px;
+    margin: top 30px;
+    margin-left: 20px;
+    border-radius: 6px;
+}
+.CadastroCalcTitulo{
+    margin-left: 5px;
+}
+.CadastroTitulo{
+    margin-left: 20px;
+    line-height: 0.08;
+}
+.CadastroForm label{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.CadastroButton{
+    margin-left: auto;
+    margin-right: 6px;
+    margin-top: 5px;
+    width: 80px;
+    height: 40px;
+    border-radius: 2px;
+    font-size: medium;
+    color: #000;
+    background-color: #fff;
+    border: none;
+}
+.CadastroImgPreview{
+    height:205px ;
+    width:200px ;
+    background-color: transparent;
+    object-fit:scale-down;
+    margin: auto;
+}
+.CadastroHeaderList{
+    height: 40px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #333;
+    border-radius: 5px;
+    align-items: center;
+}
+.CadastroHeaderLabel{
+    align-items: center;
+    display: flex;
+    align-items: center;
+}
