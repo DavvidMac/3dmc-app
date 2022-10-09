@@ -10,13 +10,16 @@ let Aux_custoenergia
 let Aux_salariototal
 let Aux_despesas
 let Aux_depreciacao
+let value
 function arredondaHora(tempohora) {
     if (tempohora !== NaN) {
         let [h, m] = tempohora.split(':');
+        value=parseFloat(h)
         if (m > 0) {
-            h += 1
+            value=parseFloat(h)+1
+            console.log(value)
         }
-        return h
+        return value
     }
 }
 function Calcular({impressao=0, pla=0, lucro = 30, material = 120, custoenergia = 0.94, salario = 1100.00, despesas = 80.00, primer = 17.00, Tprimers=0,pintura=0,isPrice}) {
