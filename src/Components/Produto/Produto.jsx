@@ -20,6 +20,7 @@ const Produto = ({
   money,
   imageUrls
 }) => {
+
   const deleteitem = async (id) => {
     const data = doc(db, "Biblioteca", id);
     await deleteDoc(data);

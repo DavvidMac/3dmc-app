@@ -19,7 +19,7 @@ function arredondaHora(tempohora) {
         if (m > 0) {
             value=parseInt(h) + 1
         }
-        return h
+        return value
     }
 }
 function Calcular({impressao=0, pla=0, lucro = 30, material = 120, custoenergia = 0.94, salario = 1100.00, despesas = 80.00, primer = 17.00, Tprimers=0,pintura=0,isPrice}) {
