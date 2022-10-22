@@ -5,7 +5,6 @@ import "./Produtos.css";
 
 const Produtos = () => {
   const information=React.useContext(FbContext)
-  console.log((information))
   return (
     <div className="ProdutosContainer">
       <h2 className="ProdutosTitulo">Products</h2>

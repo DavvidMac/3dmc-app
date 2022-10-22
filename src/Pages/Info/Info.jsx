@@ -1,47 +1,35 @@
 import React from "react";
 import "./Info.css";
+import { FbContext } from "../../Utils/Fb";
 import { db } from "../../Utils/firebase";
 import { updateDoc, setDoc, doc } from "firebase/firestore";
 import Calcular from "../../Utils/CalculoObjeto";
 
 var isPrice;
-function Info({
-  pMaterial,
-  setPMaterial,
-  cEnergia,
-  setCEnergia,
-  salario,
-  setSalario,
-  despesas,
-  setDespesas,
-  primer,
-  setPrimer,
-  lucro,
-  setLucro,
-  listaProdutos,
-}) {
+function Info() {
+  const information=React.useContext(FbContext)
   const send = async () => {
     const infoDoc = doc(db, "Info", "jNVr2acKQhCmIsiDMDED");
-    await updateDoc(infoDoc, {
-      pMaterial,
-      cEnergia,
-      salario,
-      despesas,
-      primer,
-      lucro,
-    });
+    await updateDoc(infoDoc,{ 
+      pMaterial:information.pMaterial,
+      cEnergia:information.cEnergia,
+      salario:information.salario,
+      despesas:information.despesas,
+      primer:information.primer,
+      lucro:information.lucro,
+  });
     alert("Information saved");
-    var listaNova = listaProdutos.map((produto) => ({
+    var listaNova = information.listaProdutos.map((produto) => ({
       ...produto,
       preco: Calcular({
         impressao: produto.tempo,
         pla: produto.peso,
-        lucro,
-        pMaterial,
-        cEnergia,
-        salario,
-        despesas,
-        primer,
+        lucro:information.lucro,
+        pMaterial:information.pMaterial,
+        cEnergia:information.cEnergia,
+        salario:information.salario,
+        despesas:information.despesas,
+        primer:information.primer,
         Tprimers: produto.primers,
         pintura: produto.pintura,
         isPrice: (isPrice = true),
@@ -49,18 +37,17 @@ function Info({
       money: Calcular({
         impressao: produto.tempo,
         pla: produto.peso,
-        lucro,
-        pMaterial,
-        cEnergia,
-        salario,
-        despesas,
-        primer,
+        lucro:information.lucro,
+        pMaterial:information.pMaterial,
+        cEnergia:information.cEnergia,
+        salario:information.salario,
+        despesas:information.despesas,
+        primer:information.primer,
         Tprimers: produto.primers,
         pintura: produto.pintura,
         isPrice: (isPrice = false),
       }),
     }));
-    //console.log(listaNova);
     listaNova.map((item) => updateProducts(item));
   };
   const updateProducts = async (item) => {
@@ -77,8 +64,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={pMaterial}
-            onChange={(event) => setPMaterial(event.target.value)}
+            value={information.pMaterial}
+            onChange={(event) => information.setPMaterial(event.target.value)}
           ></input>
         </label>
         <label>
@@ -86,8 +73,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={cEnergia}
-            onChange={(event) => setCEnergia(event.target.value)}
+            value={information.cEnergia}
+            onChange={(event) => information.setCEnergia(event.target.value)}
           ></input>
         </label>
         <label>
@@ -95,8 +82,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={salario}
-            onChange={(event) => setSalario(event.target.value)}
+            value={information.salario}
+            onChange={(event) => information.setSalario(event.target.value)}
           ></input>
         </label>
         <label>
@@ -104,8 +91,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={despesas}
-            onChange={(event) => setDespesas(event.target.value)}
+            value={information.despesas}
+            onChange={(event) => information.setDespesas(event.target.value)}
           ></input>
         </label>
         <label>
@@ -113,8 +100,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={primer}
-            onChange={(event) => setPrimer(event.target.value)}
+            value={information.primer}
+            onChange={(event) => information.setPrimer(event.target.value)}
           ></input>
         </label>
         <label>
@@ -122,8 +109,8 @@ function Info({
           <input
             className="InpInfo"
             type="text"
-            value={lucro}
-            onChange={(event) => setLucro(event.target.value)}
+            value={information.lucro}
+            onChange={(event) => information.setLucro(event.target.value)}
           ></input>
         </label>
         <button onClick={send} className="InfoButton">

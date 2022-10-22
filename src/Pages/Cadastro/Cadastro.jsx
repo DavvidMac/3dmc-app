@@ -26,6 +26,7 @@ function Cadastrar({
   primer,
   lucro,
 }) {
+  
   const [imageUrls, setImageUrls] = React.useState([]);
   const [lista, setLista] = React.useState(object); //lista de objetos[{tempo,peso},{tempo,peso}]
   //input tempo e peso
