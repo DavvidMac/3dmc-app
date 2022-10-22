@@ -1,8 +1,10 @@
 import React from "react";
 import "./NavBar.css";
+import { FbContext } from "../../Utils/Fb";
 import { Link } from "react-router-dom";
 
-function NavBar({ pesquisa, setPesquisa }) {
+function NavBar() {
+  const information=React.useContext(FbContext)
   return (
     <>
       <div className="NavBarTollbar">
@@ -20,8 +22,8 @@ function NavBar({ pesquisa, setPesquisa }) {
           className="NavBarSearchBar"
           type="text"
           placeholder="Pesquisar"
-          value={pesquisa}
-          onChange={(event) => setPesquisa(event.target.value)}
+          value={information.pesquisa}
+          onChange={(event) => information.setPesquisa(event.target.value)}
         ></input>
         <div className="NavBarContainerButton">
           <Link className="NavBara" to="/Cadastro">Add</Link>

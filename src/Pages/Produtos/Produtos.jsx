@@ -1,27 +1,18 @@
 import React from "react";
-import Calcular from "../../Utils/CalculoObjeto";
+import { FbContext } from "../../Utils/Fb";
 import Produto from "../../Components/Produto/Produto";
 import "./Produtos.css";
 
-const Produtos = ({
-  listaProdutos,
-  pesquisa,
-  pMaterial,
-  cEnergia,
-  salario,
-  despesas,
-  primer,
-  lucro,
-  imageUrls
-}) => {
-  
+const Produtos = () => {
+  const information=React.useContext(FbContext)
+  console.log((information))
   return (
     <div className="ProdutosContainer">
       <h2 className="ProdutosTitulo">Products</h2>
       <div className="ProdutosLista">
-        {listaProdutos
+        {information.listaProdutos
           .filter((produto) =>
-            produto.nome.toLowerCase().includes(pesquisa.toLowerCase())
+            produto.nome.toLowerCase().includes(information.pesquisa.toLowerCase())
           )
           .map((produto, index) => (
             <Produto
@@ -38,7 +29,7 @@ const Produtos = ({
               tempo={produto.tempo}
               peso={produto.peso}
               preco={produto.preco}
-              imageUrls={imageUrls}
+              imageUrls={information.imageUrls}
             />
           ))}
       </div>
