@@ -28,8 +28,8 @@
 }
 
 .NavBarContainerButton {
-    width: 180px;
-    margin-right: 40px;
+    width: 200px;
+    margin-right: 18px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

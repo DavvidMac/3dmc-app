@@ -6,8 +6,10 @@ import Calcular from "../../Utils/CalculoObjeto";
 
 var isPrice;
 function Info({
-  pMaterial,
-  setPMaterial,
+  pMaterialPla,
+  pMaterialRes,
+  setPMaterialPla,
+  setPMaterialRes,
   cEnergia,
   setCEnergia,
   salario,
@@ -23,7 +25,8 @@ function Info({
   const send = async () => {
     const infoDoc = doc(db, "Info", "jNVr2acKQhCmIsiDMDED");
     await updateDoc(infoDoc, {
-      pMaterial,
+      pMaterialPla,
+      pMaterialRes,
       cEnergia,
       salario,
       despesas,
@@ -37,7 +40,7 @@ function Info({
         impressao: produto.tempo,
         pla: produto.peso,
         lucro,
-        pMaterial,
+        material: produto.tmaterial?pMaterialRes:pMaterialPla,
         cEnergia,
         salario,
         despesas,
@@ -50,7 +53,7 @@ function Info({
         impressao: produto.tempo,
         pla: produto.peso,
         lucro,
-        pMaterial,
+        material: produto.tmaterial?pMaterialRes:pMaterialPla,
         cEnergia,
         salario,
         despesas,
@@ -73,12 +76,21 @@ function Info({
       <div className="InfoContainer">
         <h3 className="InfoTitulo">Information</h3>
         <label>
-          Material Price R$:
+          PLA Price R$:
           <input
             className="InpInfo"
             type="text"
-            value={pMaterial}
-            onChange={(event) => setPMaterial(event.target.value)}
+            value={pMaterialPla}
+            onChange={(event) => setPMaterialPla(event.target.value)}
+          ></input>
+        </label>
+        <label>
+          Resin Price R$:
+          <input
+            className="InpInfo"
+            type="text"
+            value={pMaterialRes}
+            onChange={(event) => setPMaterialRes(event.target.value)}
           ></input>
         </label>
         <label>

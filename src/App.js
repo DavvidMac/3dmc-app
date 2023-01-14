@@ -12,7 +12,6 @@ import {
 } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import Export from "./Pages/ExportData/Export";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
@@ -20,7 +19,8 @@ function App() {
   const objectLibrary = collection(db, "Biblioteca");
   const infoLibrary = collection(db, "Info");
   //info part
-  const [pMaterial, setPMaterial] = React.useState(120.0);
+  const [pMaterialPla, setPMaterialPla] = React.useState(120.0);
+  const [pMaterialRes, setPMaterialRes] = React.useState(120.0);
   const [cEnergia, setCEnergia] = React.useState(0.94);
   const [salario, setSalario] = React.useState(1100);
   const [despesas, setDespesas] = React.useState(80);
@@ -36,7 +36,8 @@ function App() {
     if (infos !== undefined) {
       setLucro(infos[0].lucro);
       setDespesas(infos[0].despesas);
-      setPMaterial(infos[0].pMaterial);
+      setPMaterialPla(infos[0].pMaterialPla);
+      setPMaterialRes(infos[0].pMaterialRes);
       setPrimer(infos[0].primer);
       setSalario(infos[0].salario);
       setCEnergia(infos[0].cEnergia);
@@ -82,12 +83,21 @@ function App() {
         <Route
           path="/"
           element={
+            <div style={{textAlign:'Center'}}>
+             <h1>Navegue usando a barra de Superior.</h1>
+            </div>
+          }
+        ></Route>
+        <Route
+          path="/Produtos"
+          element={
             <div>
               {
                 <Produtos
                   listaProdutos={listaProdutos}
                   pesquisa={pesquisa}
-                  pMaterial={pMaterial}
+                  pMaterialPla={pMaterialPla}
+                  pMaterialRes={pMaterialRes}
                   cEnergia={cEnergia}
                   salario={salario}
                   despesas={despesas}
@@ -105,7 +115,8 @@ function App() {
             <Cadastro
               listaProdutos={listaProdutos}
               setListaProdutos={setListaProdutos}
-              pMaterial={pMaterial}
+              pMaterialPla={pMaterialPla}
+              pMaterialRes={pMaterialRes}
               cEnergia={cEnergia}
               salario={salario}
               despesas={despesas}
@@ -115,14 +126,12 @@ function App() {
           }
         />
         <Route
-          path="/Export"
-          element={<Export listaProdutos={listaProdutos} />}
-        ></Route>
-        <Route
           path="/Info"
           element={<Info
-            pMaterial={pMaterial}
-            setPMaterial={setPMaterial}
+            pMaterialPla={pMaterialPla}
+            pMaterialRes={pMaterialRes}
+            setPMaterialPla={setPMaterialPla}
+            setPMaterialRes={setPMaterialRes}
             cEnergia={cEnergia}
             setCEnergia={setCEnergia}
             salario={salario}

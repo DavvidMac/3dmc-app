@@ -19,12 +19,14 @@ let object = []; //lista vazia
 function Cadastrar({
   listaProdutos,
   setListaProdutos,
-  pMaterial,
+  pMaterialPla,
+  pMaterialRes,
   cEnergia,
   salario,
   despesas,
   primer,
   lucro,
+
 }) {
   const [imageUrls, setImageUrls] = React.useState([]);
   const [lista, setLista] = React.useState(object); //lista de objetos[{tempo,peso},{tempo,peso}]
@@ -32,6 +34,7 @@ function Cadastrar({
   const [tempo, setTempo] = React.useState("");
   const [peso, setPeso] = React.useState("");
   //Form cadastro
+  const [tmaterial, setTmaterial] = React.useState(true);
   const [idProduto, setIdProduto] = React.useState("");
   const [nome, setNome] = React.useState("");
   let url; //variavel recebe os url
@@ -66,7 +69,7 @@ function Cadastrar({
     precoFinal = Calcular({
       impressao: sumt,
       pla: summ,
-      material: pMaterial,
+      material: tmaterial?pMaterialRes:pMaterialPla,
       custoenergia: cEnergia,
       salario: salario,
       despesas: despesas,
@@ -78,7 +81,7 @@ function Cadastrar({
     money = Calcular({
       impressao: sumt,
       pla: summ,
-      material: pMaterial,
+      material: tmaterial?pMaterialRes:pMaterialPla,
       custoenergia: cEnergia,
       salario: salario,
       despesas: despesas,
@@ -97,6 +100,7 @@ function Cadastrar({
     });
     await addDoc(objectLibrary, {
       idProduto: idProduto,
+      tmaterial:tmaterial,
       nome: nome,
       tamanho: tamanho,
       escala: escala,
@@ -161,6 +165,15 @@ function Cadastrar({
                 placeholder="Id Product"
                 value={idProduto}
                 onChange={(e) => setIdProduto(e.target.value)}
+              ></input>
+            </label>
+            <label>
+              Resina?
+              <input
+                className="CadastroInputProduto"
+                type="checkbox"
+                checked={tmaterial}
+                onChange={(e) => setTmaterial(e.target.checked)}
               ></input>
             </label>
             <label>

@@ -13,7 +13,7 @@ function NavBar({ pesquisa, setPesquisa }) {
             alt="Logo"
           />
           <p className="NavBarLojaName">
-            LOJA <Link className="NavBara" to="/"><strong>3DMC</strong></Link>
+           <Link className="NavBara" to="/"><strong>TOYACTION</strong></Link>
           </p>
         </div>
         <input
@@ -25,8 +25,8 @@ function NavBar({ pesquisa, setPesquisa }) {
         ></input>
         <div className="NavBarContainerButton">
           <Link className="NavBara" to="/Cadastro">Add</Link>
-          <Link className="NavBara" to="/Export">Export</Link>
-          <Link className="NavBara" to="/Info">Info</Link>
+          <Link className="NavBara" to="/Produtos">Toys</Link>
+          <Link className="NavBara" to="/Info">Tools</Link>
         </div>
       </div>
     </>
