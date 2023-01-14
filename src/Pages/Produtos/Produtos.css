@@ -1,12 +1,16 @@
 .ProdutosLista{
     display:flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .ProdutosTitulo{
-margin-top: 4px;
+margin-top: 18px;
+margin-left: 18px;
+margin-bottom: 8px;
+text-align: center;
+font-size:xx-large;
 }
 .ProdutosContainer{
-    margin-left: 20px;
     display: flex;
     flex-direction: column;
     flex: 1;

@@ -12,6 +12,7 @@ import {
 } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
 import { HashRouter, Route, Routes } from "react-router-dom";
+import Edit from "./Pages/Edit/Edit";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
@@ -82,10 +83,19 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <div style={{textAlign:'Center'}}>
-             <h1>Navegue usando a barra de Superior.</h1>
-            </div>
+          element={  
+                <Produtos
+                  listaProdutos={listaProdutos}
+                  pesquisa={pesquisa}
+                  pMaterialPla={pMaterialPla}
+                  pMaterialRes={pMaterialRes}
+                  cEnergia={cEnergia}
+                  salario={salario}
+                  despesas={despesas}
+                  primer={primer}
+                  lucro={lucro}
+                  imageUrls={imageUrls}
+                />
           }
         ></Route>
         <Route
@@ -145,6 +155,10 @@ function App() {
             listaProdutos={listaProdutos}
           />}
         ></Route>
+        <Route
+          path="/Edit/:id"
+          element={<Edit/>}>
+        </Route>
       </Routes>
     </HashRouter>
   );

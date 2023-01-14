@@ -17,7 +17,7 @@ const Produtos = ({
   
   return (
     <div className="ProdutosContainer">
-      <h2 className="ProdutosTitulo">Products</h2>
+      <h2 className="ProdutosTitulo">TOYS</h2>
       <div className="ProdutosLista">
         {listaProdutos
           .filter((produto) =>
