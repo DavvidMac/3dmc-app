@@ -7,41 +7,52 @@ import { auth } from "../../Utils/firebase";
 const Register = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-
+  const [password2, setPassword2] = React.useState("");
   const navigate = useNavigate();
 
   async function handleRegister(e) {
     e.preventDefault();
-    if (email !== "" && password !== "") {
-      await createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          navigate("/produtos", { replace: true });
-        })
-        .catch(() => {
-          console.log("erro ao fazer cadastro");
-        });
-    } else {
-      alert("preencha todos os campos");
+    if (password === password2) {
+      if (email !== "" && password !== "") {
+        await createUserWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            navigate("/produtos", { replace: true });
+          })
+          .catch(() => {
+            console.log("erro ao fazer cadastro");
+          });
+      } else {
+        alert("preencha todos os campos");
+      }
+    }
+    else{
+      alert("Senhas não conferem");
     }
   }
 
   return (
-    <div className="home-container">
+    <div className="login-container">
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <input
           type={"text"}
-          placeholder="Digite seu email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type={"password"}
-          placeholder="Digite seu email"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Cadastrar</button>
+        <input
+          type={"password"}
+          placeholder="Repeat Password"
+          value={password2}
+          onChange={(e) => setPassword2(e.target.value)}
+        />
+        <button type="submit">Sign</button>
       </form>
     </div>
   );

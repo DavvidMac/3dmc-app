@@ -25,7 +25,7 @@ function NavBar({ pesquisa, setPesquisa }) {
             alt="Logo"
           />
           <p className="NavBarLojaName">
-           <Link className="NavBara" to="/"><strong>TOYACTION</strong></Link>
+           <Link className="NavBara" to="/Produtos"><strong>TOYACTION</strong></Link>
           </p>
         </div>
         <input

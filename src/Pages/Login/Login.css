@@ -1,0 +1,40 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  height: 70vh;
+  justify-content: center;
+
+}
+.login-container h1{
+margin: 0;
+margin-left: 20%;
+}
+.logo-container{
+    margin-left: auto;
+    margin-right: auto;
+width: 150px;
+}
+form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+form button {
+  margin-top: 14px;
+  margin-left: auto;
+  width: 80px;
+  background-color: transparent;
+  outline: 2px solid white;
+  border-radius: 5px;
+}
+form input {
+  margin-top: 18px;
+  height: 24px;
+  background-color: transparent;
+  outline: 1px solid white;
+  border-radius: 8px;
+}
