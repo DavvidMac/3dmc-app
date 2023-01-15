@@ -76,9 +76,6 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <div className="App">
-        <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
-      </div>
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route
@@ -86,6 +83,7 @@ function App() {
           element={
             <div>
               <Private>
+                <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
                 <Produtos
                   listaProdutos={listaProdutos}
                   pesquisa={pesquisa}
@@ -106,43 +104,55 @@ function App() {
           path="/Cadastro"
           element={
             <Private>
-            <Cadastro
-              listaProdutos={listaProdutos}
-              setListaProdutos={setListaProdutos}
-              pMaterialPla={pMaterialPla}
-              pMaterialRes={pMaterialRes}
-              cEnergia={cEnergia}
-              salario={salario}
-              despesas={despesas}
-              primer={primer}
-              lucro={lucro}
-            /></Private>
+              <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
+              <Cadastro
+                listaProdutos={listaProdutos}
+                setListaProdutos={setListaProdutos}
+                pMaterialPla={pMaterialPla}
+                pMaterialRes={pMaterialRes}
+                cEnergia={cEnergia}
+                salario={salario}
+                despesas={despesas}
+                primer={primer}
+                lucro={lucro}
+              />
+            </Private>
           }
         />
         <Route
           path="/Info"
           element={
             <Private>
-            <Info
-              pMaterialPla={pMaterialPla}
-              pMaterialRes={pMaterialRes}
-              setPMaterialPla={setPMaterialPla}
-              setPMaterialRes={setPMaterialRes}
-              cEnergia={cEnergia}
-              setCEnergia={setCEnergia}
-              salario={salario}
-              setSalario={setSalario}
-              despesas={despesas}
-              setDespesas={setDespesas}
-              primer={primer}
-              setPrimer={setPrimer}
-              lucro={lucro}
-              setLucro={setLucro}
-              listaProdutos={listaProdutos}
-            /></Private>
+              <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
+              <Info
+                pMaterialPla={pMaterialPla}
+                pMaterialRes={pMaterialRes}
+                setPMaterialPla={setPMaterialPla}
+                setPMaterialRes={setPMaterialRes}
+                cEnergia={cEnergia}
+                setCEnergia={setCEnergia}
+                salario={salario}
+                setSalario={setSalario}
+                despesas={despesas}
+                setDespesas={setDespesas}
+                primer={primer}
+                setPrimer={setPrimer}
+                lucro={lucro}
+                setLucro={setLucro}
+                listaProdutos={listaProdutos}
+              />
+            </Private>
           }
         ></Route>
-        <Route path="/Register" element={<Private><Register /></Private>}></Route>
+        <Route
+          path="/Register"
+          element={
+            <Private>
+              <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
+              <Register />
+            </Private>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
