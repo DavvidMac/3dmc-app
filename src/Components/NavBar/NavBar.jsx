@@ -39,7 +39,7 @@ function NavBar({ pesquisa, setPesquisa }) {
           <Link className="NavBara" to="/Cadastro">Add</Link>
           <Link className="NavBara" to="/Produtos">Toys</Link>
           <Link className="NavBara" to="/Info">Tools</Link>
-          <button onClick={handleSignOut}>Logout</button>
+          <span onClick={handleSignOut}>Logout</span>
         </div>
       </div>
     </>
