@@ -5,14 +5,13 @@ import NavBar from "./Components/NavBar/NavBar";
 import Info from "./Pages/Info/Info";
 import Cadastro from "./Pages/Cadastro/Cadastro";
 import { db, storage } from "./Utils/firebase";
-import {
-  ref,
-  getDownloadURL,
-  listAll
-} from "firebase/storage";
-import { collection, getDocs } from "firebase/firestore";
-import { HashRouter, Route, Routes } from "react-router-dom";
 import Edit from "./Pages/Edit/Edit";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
+import Private from "./Pages/Private";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
+import { collection, getDocs } from "firebase/firestore";
+import { HashRouter, BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
@@ -76,33 +75,17 @@ function App() {
     });
   }, []);
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="App">
         <NavBar pesquisa={pesquisa} setPesquisa={setPesquisa} />
       </div>
       <Routes>
-        <Route
-          path="/"
-          element={  
-                <Produtos
-                  listaProdutos={listaProdutos}
-                  pesquisa={pesquisa}
-                  pMaterialPla={pMaterialPla}
-                  pMaterialRes={pMaterialRes}
-                  cEnergia={cEnergia}
-                  salario={salario}
-                  despesas={despesas}
-                  primer={primer}
-                  lucro={lucro}
-                  imageUrls={imageUrls}
-                />
-          }
-        ></Route>
+        <Route path="/" element={<Login />}></Route>
         <Route
           path="/Produtos"
           element={
             <div>
-              {
+              <Private>
                 <Produtos
                   listaProdutos={listaProdutos}
                   pesquisa={pesquisa}
@@ -114,14 +97,15 @@ function App() {
                   primer={primer}
                   lucro={lucro}
                   imageUrls={imageUrls}
-                />
-              }
+                />{" "}
+              </Private>
             </div>
           }
         ></Route>
         <Route
           path="/Cadastro"
           element={
+            <Private>
             <Cadastro
               listaProdutos={listaProdutos}
               setListaProdutos={setListaProdutos}
@@ -132,35 +116,35 @@ function App() {
               despesas={despesas}
               primer={primer}
               lucro={lucro}
-            />
+            /></Private>
           }
         />
         <Route
           path="/Info"
-          element={<Info
-            pMaterialPla={pMaterialPla}
-            pMaterialRes={pMaterialRes}
-            setPMaterialPla={setPMaterialPla}
-            setPMaterialRes={setPMaterialRes}
-            cEnergia={cEnergia}
-            setCEnergia={setCEnergia}
-            salario={salario}
-            setSalario={setSalario}
-            despesas={despesas}
-            setDespesas={setDespesas}
-            primer={primer}
-            setPrimer={setPrimer}
-            lucro={lucro}
-            setLucro={setLucro}
-            listaProdutos={listaProdutos}
-          />}
+          element={
+            <Private>
+            <Info
+              pMaterialPla={pMaterialPla}
+              pMaterialRes={pMaterialRes}
+              setPMaterialPla={setPMaterialPla}
+              setPMaterialRes={setPMaterialRes}
+              cEnergia={cEnergia}
+              setCEnergia={setCEnergia}
+              salario={salario}
+              setSalario={setSalario}
+              despesas={despesas}
+              setDespesas={setDespesas}
+              primer={primer}
+              setPrimer={setPrimer}
+              lucro={lucro}
+              setLucro={setLucro}
+              listaProdutos={listaProdutos}
+            /></Private>
+          }
         ></Route>
-        <Route
-          path="/Edit/:id"
-          element={<Edit/>}>
-        </Route>
+        <Route path="/Register" element={<Private><Register /></Private>}></Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

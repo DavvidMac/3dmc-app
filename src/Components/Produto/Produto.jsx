@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import {  Link, } from "react-router-dom";
 import "./Produto.css";
 import {
   ref,
@@ -31,7 +31,7 @@ const Produto = ({
   return (
     <>
       <div>
-        <div className="ProdutoContainer">
+        <div  className="ProdutoContainer">
           {imageUrls
             .filter(
               (produto) => produto.includes(encodeURIComponent(url)) // O URL SALVO NO ARRAY É DIFERENTe DO QUE CHEGA PELO PADRÃO DE HTTP

@@ -1,12 +1,62 @@
-import React from 'react'
-import './Edit.css'
+import React from "react";
+import "./Edit.css";
 
-const Edit = () => {
+const Edit = ({ listaProdutos, imageUrls }) => {
+  const [escala, setEscala] = React.useState("");
+  const [nome, setNome] = React.useState("");
+  const [peso, setPeso] = React.useState("");
+  const [tempo, setTempo] = React.useState("");
+  const [pintura, setPintura] = React.useState("");
+  const [primers, setPrimes] = React.useState("");
+  const [tamanho, setTamanho] = React.useState("");
+  console.log(listaProdutos);
+  /*{index}
+          {produto.url}
+          {produto.nome}
+          {produto.id}
+          {produto.money}
+          {produto.idProduto}
+          {produto.tamanho}
+          {produto.escala}
+          {produto.pintura}
+          {produto.primers}
+          {produto.tempo}
+          {produto.peso}
+          {produto.preco}
+          {imageUrls}*/
   return (
-    <div>Edit</div>
-    /*this page needs useparams to 
-    show Toy id im url and update his data to firebase.*/
-  )
-}
+    <div>
+      {listaProdutos.filter((produto) =>
+            produto.nome.toLowerCase().includes(window.location.search.toLowerCase())
+          )
+      .map((produto, index) => (
+        <p>
+          {index}
+          {produto.url}
+          {produto.nome}
+          {produto.id}
+          {produto.money}
+          {produto.idProduto}
+          {produto.tamanho}
+          {produto.escala}
+          {produto.pintura}
+          {produto.primers}
+          {produto.tempo}
+          {produto.peso}
+          {produto.preco}
+          {imageUrls}
+        </p>
+      ))}
 
-export default Edit
+      <input
+        className="CadastroInputProduto"
+        type="text"
+        placeholder="Id Product"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      ></input>
+    </div>
+  );
+};
+
+export default Edit;
