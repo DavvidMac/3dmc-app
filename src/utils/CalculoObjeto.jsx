@@ -3,7 +3,7 @@ const depreciacao = 36
 const dias = 5
 const horasd = 12
 const consumo = 300
-const invest = 2090
+const invest = 1300
 //variaveis auxiliares
 let Aux_totalmaterial
 let Aux_custoenergia
