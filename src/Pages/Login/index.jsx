@@ -16,7 +16,7 @@ const Login = () => {
     if (email !== "" && password !== "") {
       await signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          navigate("/produtos", { replace: true });
+          navigate("/Produtos", { replace: true });
         })
         .catch(() => {
             alert("Falha ao logar");

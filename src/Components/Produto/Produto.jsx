@@ -14,6 +14,8 @@ const Produto = ({
   preco,
   id,
   idProduto,
+  tamanho,
+  escala,
   pintura,
   primers,
   tempo,
@@ -47,9 +49,11 @@ const Produto = ({
           <div className="ProdutoDescription">
             <h4>{nome}</h4>
             <p>Price R$ {preco}</p>
-            <p className="ProdutoP">Pay R$:{money}</p>
+            <p className="ProdutoP">Size: {tamanho} | Scale: {escala}</p>
             <p className="ProdutoP">Paint: {pintura} | Primers: {primers}</p>
             <p className="ProdutoP">Time: {tempo} | Weight: {peso.toFixed(3)}</p>
+            
+            <p className="ProdutoP">Pay R$:{money}</p>
             <button
               className="ProdutoButton"
               onClick={() => {
