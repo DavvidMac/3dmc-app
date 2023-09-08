@@ -19,11 +19,6 @@ function NavBar({ pesquisa, setPesquisa }) {
     <>
       <div className="NavBarTollbar">
         <div className="NavBarContainer">
-          <img
-            src={require("./Images/Logo.png")}
-            className="NavBarLogo"
-            alt="Logo"
-          />
           <p className="NavBarLojaName">
            <Link className="NavBara" to="/Produtos"><strong>TOYACTION</strong></Link>
           </p>
