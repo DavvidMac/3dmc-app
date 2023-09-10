@@ -11,8 +11,7 @@ import Register from "./Pages/Register";
 import Private from "./Pages/Private";
 import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { collection, getDocs } from "firebase/firestore";
-import { HashRouter, BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 function App() {
   const [listaProdutos, setListaProdutos] = React.useState([]);
   const [pesquisa, setPesquisa] = React.useState(""); //for navbar search
@@ -32,6 +31,7 @@ function App() {
   const [imageUrls, setImageUrls] = React.useState([]);
   const imagesListRef = ref(storage, "images/");
 
+  
   React.useEffect(() => {
     if (infos !== undefined) {
       setLucro(infos[0].lucro);
@@ -77,7 +77,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        {<Route path="/" element={<Login/>}/>}
         <Route
           path="/Produtos"
           element={
@@ -153,6 +153,7 @@ function App() {
             </Private>
           }
         ></Route>
+        <Route path="*" element={<Navigate to='/'/>}/>
       </Routes>
     </BrowserRouter>
   );

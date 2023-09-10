@@ -2,10 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles'; //import material ui
 
@@ -13,7 +10,22 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../Utils/firebase";
 
-const defaultTheme = createTheme();
+const darkTheme = createTheme({
+  palette: {
+    
+    type: 'dark', // Define o modo escuro
+    primary: {
+      main: '#1976D2', // Cor primária
+    },
+    secondary: {
+      main: '#FF5722', // Cor secundária
+    },
+    backgroundColor: {
+      primary: {
+      main: '#000000',},
+    },
+  },
+});
 
 const Register = () => {
   const [email, setEmail] = React.useState("");
@@ -43,8 +55,8 @@ const Register = () => {
   }
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+    <ThemeProvider  theme={darkTheme}>
+      <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
           sx={{
@@ -61,7 +73,7 @@ const Register = () => {
           />
           <Box component="form" onSubmit={handleRegister} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="small"
+              margin="normal"
               required
               fullWidth
               id="email"
@@ -100,7 +112,7 @@ const Register = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sm={{ mt: 2, mb: 2
+              sx={{ mt: 2, mb: 2
                }}
             >
               Sign In

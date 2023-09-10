@@ -2,13 +2,12 @@ import React from "react";
 import "./NavBar.css";
 import { auth } from '../../Utils/firebase'
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 function NavBar({ pesquisa, setPesquisa }) {
-  const navigate = useNavigate();
   const handleSignOut = async () => {
     try {
       await auth.signOut();
       console.log("Saiu com sucesso");
+      localStorage.removeItem("@DetailUser");
       // handle the successful sign out by redirecting to login page or displaying a message
     } catch (error) {
       console.error("Error signing out user: ", error);
